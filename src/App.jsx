@@ -3,33 +3,18 @@ import reactLogo from '../public/cocktails.png'
 import './App.css'
 import CountButton from "./components/CountButton.jsx";
 import RequestExample from "./components/RequestExample.jsx";
+import Home from "./pages/Home.jsx";
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
 function App() {
 
-
-
-	return (
-		<div className="App">
-			<div>
-				<a href="/" target="_blank">
-					<img src={reactLogo} className="logo" alt="Cocktail"/>
-				</a>
-			</div>
-			<h1>Aperit'IF</h1>
-
-			<input type="text" id="recherche" placeholder="Rechercher un truc..."/>
-
-			{/*Ici mon composant personnalisé CountButton dans `components/`*/}
-			<CountButton />
-
-			<RequestExample />
-
-			<p>
-				Changer <code>src/App.jsx</code> et enregistrer pour voir
-				ces changements en live
-			</p>
-		</div>
-	)
+  return (
+     <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+     </BrowserRouter>
+  )
 }
 
 export default App
