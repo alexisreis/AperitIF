@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Header/header.jsx";
-import Footer from "../Footer/footer.jsx";
+import Header from "../../components/Header/header.jsx";
+import Footer from "../../components/Footer/footer.jsx";
 
 function NotFound() {
   return (
