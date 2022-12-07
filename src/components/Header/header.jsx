@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import "./navbar.scss";
+import "./header.scss";
 
-function Navbar() {
+function Header() {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [size, setSize] = useState({
@@ -37,7 +37,7 @@ function Navbar() {
     <header className="header">
       <div className="header__content">
         <Link to="/" className="header__content__logo">
-          Navbar
+          bonsoir c'est APERIT'IF
         </Link>
         <nav
           className={`${"header__content__nav"} 
@@ -46,23 +46,13 @@ function Navbar() {
         >
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Accueil</Link>
             </li>
             <li>
-              <Link to="/profile">Profile</Link>
+              <Link to="/about">À propos</Link>
             </li>
-            <li>
-              <Link to="/Works">Browse Works</Link>
-            </li>
-            <li>
-              <Link to="/help">Help</Link>
-            </li>
-
             <Link to="/register">
               <button className="btn">Register</button>
-            </Link>
-            <Link to="/login">
-              <button className="btn btn__login">Login</button>
             </Link>
           </ul>
         </nav>
@@ -78,4 +68,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;

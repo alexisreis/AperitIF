@@ -1,10 +1,10 @@
 import React from "react";
-import Navbar from "../Navbar/index.jsx";
+import Header from "../Header/header.jsx";
 
 function NotFound() {
   return (
     <body>
-      <Navbar />
+      <Header />
       <h1>NOT FOUND</h1>
       <h2>Vite + React + TS (Hamburger + Responsive + Router)</h2>
       <footer className="footer">
