@@ -9,7 +9,7 @@ function Footer() {
             <p className="footer-by">
                 L'abus d'alcool est dangereux pour la santé. À consommer avec modération.
                 <br/>
-                Projet réalisé par : {" "}
+                Projet réalisé par {" "}
                 <Link to="/about">
                     une équipe d'étudiants
                 </Link>
