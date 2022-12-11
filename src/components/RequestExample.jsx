@@ -1,7 +1,13 @@
 import {useEffect} from "react";
-
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import CocktailCard from "./CocktailCard.jsx";
+import { createRoot } from 'react-dom/client';
+import { createElement } from "react";
+import {useState} from "react";
 import './RequestExample.css'
 function RequestExample() {
+
 
 	useEffect(() => {
 		document.getElementById("requete").innerHTML = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -24,8 +30,9 @@ function RequestExample() {
                           dbp:served ?served;
                           dbo:thumbnail ?thumbnail.
                           Filter (langMatches(lang(?comments), "fr"))
-                          Filter(?name = "Mojito"@en)
-                          }`;                                                 
+
+                          }`;
+                          // Filter(?name = "Mojito"@en)
 	}, []);
 
 	const rechercher = () => {
@@ -50,43 +57,60 @@ function RequestExample() {
 		xmlhttp.send();
 	}
 
+    var children=[];
+
 	// Affichage des résultats dans un tableau
 	const afficherResultats = (data) => {
 		// Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
 		// pour vos applications, c'est juste pour la démo sous forme de tableau
-		var index = [];
+		 var index = [];
 
-		var contenuTableau = "<tr>";
+// 		var contenuTableau = "<tr>";
 
 		data.head.vars.forEach((v, i) => {
-			contenuTableau += "<th>" + v + "</th>";
+// 			contenuTableau += "<th>" + v + "</th>";
 			index.push(v);
 		});
 
+        var imgC;
+        var nameC;
 		data.results.bindings.forEach(r => {
-			contenuTableau += "<tr>";
 
+// 			contenuTableau += "<tr>";
 			index.forEach(v => {
-
 				if (r[v]) {
 					if (r[v].type === "uri") {
-						contenuTableau += "<td><img src=\""+ r[v].value +"\" style=\"max-width:100px;\"/></td>";
+// 						contenuTableau += "<td><img src=\""+ r[v].value +"\" style=\"max-width:100px;\"/></td>";
+					    imgC = r[v].value;
 					} else {
-						contenuTableau += "<td>" + r[v].value + "</td>";
+// 						contenuTableau += "<td>" + r[v].value + "</td>";
+						nameC = r[v].value;
+						console.log(r[v].value);
+						console.log(typeof nameC);
 					}
 				} else {
-					contenuTableau += "<td></td>";
+// 					contenuTableau += "<td></td>";
 				}
 
 			});
 
+				var card2=React.createElement(CocktailCard, {name:nameC, img:imgC});
+				children.push(card2);
+				console.log(children);
 
-			contenuTableau += "</tr>";
+
+
+// 			contenuTableau += "</tr>";
 		});
+		var cardsTableau = React.createElement('div',{id:'cardsGrid'},children);
+// 		children.forEach(element => ReactDOM.render(element, document.getElementById('cardsTableau')));
+        ReactDOM.render(cardsTableau, document.getElementById('cardsTableau'));
 
-		contenuTableau += "</tr>";
+// 		contenuTableau += "</tr>";
 
-		document.getElementById("resultats").innerHTML = contenuTableau;
+		//document.getElementById("resultats").innerHTML = contenuTableau;
+        //document.getElementById("resultats").appendChild(cardsTableau);
+        //document.getElementById("resultats").innerHTML= "<CocktailCard name=\"JoLeCocktail\" imgUrl=\"https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/grand-canyon-2068602/21717382-2-fre-FR/Cocktail-grand-canyon\"/>";
 
 	}
 
@@ -98,6 +122,10 @@ function RequestExample() {
 		</div>
 
 		<table id="resultats"></table>
+		<div id="cardsTableau">
+
+        {children}
+        </div>
 	</>)
 }
 

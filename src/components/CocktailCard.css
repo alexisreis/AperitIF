@@ -1,0 +1,23 @@
+#divCard{
+    display:grid;
+    grid-template-rows: 170px 30px;
+    height:210px;
+    margin:10px;
+    background-color:lightGrey;
+    border-radius:10px;
+
+}
+#divCard p{
+margin:0px;
+    grid-row:2;
+    color:black;
+}
+#divCard img{
+background-color:darkGrey;
+margin:0px;
+grid-row:1;
+object-fit: cover;
+    height:170px;
+    width:170px;
+    border-radius:10px;
+}
