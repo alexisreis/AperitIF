@@ -1,35 +1,24 @@
-import {useState, useEffect} from 'react'
-import reactLogo from '../public/cocktails.png'
-import './App.css'
-import CountButton from "./components/CountButton.jsx";
-import RequestExample from "./components/RequestExample.jsx";
+import "./App.css";
+import Header from "./components/Header/header.jsx";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/home.jsx";
+import NotFound from "./pages/NotFound/notfound.jsx";
+import About from "./pages/About/about.jsx";
 
 function App() {
-
-
-
-	return (
-		<div className="App">
-			<div>
-				<a href="/" target="_blank">
-					<img src={reactLogo} className="logo" alt="Cocktail"/>
-				</a>
-			</div>
-			<h1>Aperit'IF</h1>
-
-			<input type="text" id="recherche" placeholder="Rechercher un truc..."/>
-
-			{/*Ici mon composant personnalisé CountButton dans `components/`*/}
-			<CountButton />
-
-			<RequestExample />
-
-			<p>
-				Changer <code>src/App.jsx</code> et enregistrer pour voir
-				ces changements en live
-			</p>
-		</div>
-	)
+  return (
+    <Routes>
+      <Route path="about" element={<About />} />
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }
 
-export default App
+export function WrappedApp() {
+  return (
+    <HashRouter>
+      <App />
+    </HashRouter>
+  );
+}
