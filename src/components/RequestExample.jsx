@@ -61,6 +61,8 @@ function RequestExample() {
 
 	// Affichage des résultats dans un tableau
 	const afficherResultats = (data) => {
+
+	    children=[];
 		// Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
 		// pour vos applications, c'est juste pour la démo sous forme de tableau
 		 var index = [];
@@ -115,18 +117,16 @@ function RequestExample() {
 	}
 
 
-	return (<>
-		<div className={"columns"}>
+	return (<div id="requestExample">
 			<textarea id="requete" rows="20" cols="80"></textarea>
 			<button onClick={() => rechercher()}>Rechercher</button>
-		</div>
 
 		<table id="resultats"></table>
 		<div id="cardsTableau">
 
         {children}
         </div>
-	</>)
+	</div>)
 }
 
 export default RequestExample;

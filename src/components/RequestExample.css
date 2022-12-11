@@ -9,21 +9,32 @@
 }
 
 #cardsTableau{
-    margin:10px;
+width:fit-content;
+margin:auto;
 }
 
 #cardsTableau div{
-width:170px;
     display:grid;
-align-items: auto;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 170px);
   gap: 10px;
   grid-auto-rows: minmax(200px, auto);
+margin:0px;
 
   }
 
-#test{
-    height:95px;
-    width:95px;
-    background-color:green;
-}
+ #requestExample{
+ margin:auto;
+ text-align:center;
+ display:block;
+ }
+
+ #requestExample textarea{
+
+ display:block;
+ margin:auto;}
+ #requestExample button{
+margin:auto;
+ display:block;
+ margin-top:10px;
+ margin-bottom:20px;}
+
