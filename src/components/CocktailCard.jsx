@@ -28,7 +28,7 @@ class CocktailCard extends Component {
     return (
             <div id="divCard">
             <img src={this.props.img}/>
-     		<p>{this.props.name}</p>
+     		<div><p>{this.props.name}</p></div>
      		</div>
     );
   }
