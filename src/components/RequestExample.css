@@ -1,16 +1,6 @@
-#resultats{
- text-align:center;
- margin-left:20;
- margin-right:auto;
-}
-
-#resultats th, td{
-    width:100px
-}
-
 #cardsTableau{
-width:fit-content;
-margin:auto;
+    width:fit-content;
+    margin:auto;
 }
 
 #cardsTableau div{
@@ -23,9 +13,9 @@ margin:auto;
  }
 
  #requestExample{
- margin:auto;
- text-align:center;
- display:block;
+    margin:auto;
+    text-align:center;
+    display:block;
  }
 
  #requestExample textarea{
