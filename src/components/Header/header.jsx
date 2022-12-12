@@ -37,7 +37,7 @@ function Header() {
     <header className="header">
       <div className="header__content">
         <Link to="/" className="header__content__logo">
-          bonsoir c'est APERIT'IF
+          Bonsoir c'est APERIT'IF
         </Link>
         <nav
           className={`${"header__content__nav"} 

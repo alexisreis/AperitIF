@@ -5,12 +5,12 @@ import RequestExample from "../../components/RequestExample.jsx";
 
 function Home() {
   return (
-    <body>
+    <div>
       <Header />
       <h1>Home</h1>
       <RequestExample/>
       <Footer/>
-    </body>
+    </div>
   );
 }
 
