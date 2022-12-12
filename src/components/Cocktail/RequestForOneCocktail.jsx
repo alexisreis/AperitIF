@@ -6,8 +6,7 @@ function RequestForOneCocktail(nameCocktail) {
     console.log("PARAMMMEETTERR");
     console.log(nameCocktail.nameCocktail);
     var cocktail = nameCocktail.nameCocktail;
-    useEffect(() => {
-        document.getElementById("requete").innerHTML = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    var recherche = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -29,10 +28,8 @@ dbo:thumbnail ?thumbnail.
 Filter (langMatches(lang(?comments), "fr"))
 Filter(?name = "`+cocktail+`"@en)
 }`;
-    }, []);
-
     const rechercher = () => {
-        var contenu_requete = document.getElementById("requete").value;
+        var contenu_requete = recherche;
 
         // Encodage de l'URL à transmettre à DBPedia
         var url_base = "http://dbpedia.org/sparql";
@@ -57,10 +54,10 @@ Filter(?name = "`+cocktail+`"@en)
         // pour vos applications, c'est juste pour la démo sous forme de tableau
         var index = [];
 
-        var Ctitle;
-        var Cimg;
-        var Cingredients;
-        var Ccomment;
+        var Ctitle; // ok
+        var Cimg; // ok
+        var Cingredients; // ok
+        var Ccomment; // ok
         var Cserved;
         console.log("DATA");
         console.log(data.results.bindings[0]);
@@ -93,10 +90,30 @@ Filter(?name = "`+cocktail+`"@en)
         var contenuCocktail = "<h1>";
         contenuCocktail += Ctitle;
         contenuCocktail += "</h1>";
+
+        contenuCocktail += "<div class='align'>";
+        contenuCocktail += "<div>"
         contenuCocktail += "<p id='comments'>";
         contenuCocktail += Ccomment;
         contenuCocktail += "</p>";
+        contenuCocktail += "<div id='ingredients'>"
+        contenuCocktail += Cingredients;
+        contenuCocktail += "</div>";
+        contenuCocktail += "</div>";
+        contenuCocktail += "<div>";
+        contenuCocktail += "<img id ='imgCocktail' src='";
+        contenuCocktail += Cimg;
+        contenuCocktail += "'/>'";
+        contenuCocktail += "<div id='served'>";
+        contenuCocktail += "Served on: ";
+        contenuCocktail += Cserved;
+        contenuCocktail += "</div>";
+        contenuCocktail += "</div>";
+        contenuCocktail += "</div>";
+        contenuCocktail += "</div>";
 
+
+        // <img src={this.props.img}/>
 
 
         var contenuTableau = "<tr>";
@@ -134,20 +151,10 @@ Filter(?name = "`+cocktail+`"@en)
 
     }
 
-
+    rechercher();
     return (<>
-        <div className={"columns"}>
-            <textarea id="requete" rows="20" cols="80"></textarea>
-            <button onClick={() => rechercher()}>Rechercher</button>
-        </div>
         {/*<table id="resultatsOneCocktailTable"></table>*/}
-        <p>---------------------------------------------------------------------</p>
-        <p>resultatsOneCocktailTable BEFORE</p>
-        <p>---------------------------------------------------------------------</p>
         <div id="resultatOneCocktail"></div>
-        <p>---------------------------------------------------------------------</p>
-        <p>resultatsOneCocktailTable AFTER</p>
-        <p>---------------------------------------------------------------------</p>
     </>)
 }
 

@@ -11,7 +11,6 @@ function Cocktail (){
     return(
         <body>
             <Header />
-            <h2> Ceci est la page Cocktail.jsx</h2>
             <RequestForOneCocktail nameCocktail={nameCocktail}/>
             <DescriptionCocktail />
             <Footer />
