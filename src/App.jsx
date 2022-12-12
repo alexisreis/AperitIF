@@ -6,17 +6,29 @@ import RequestExample from "./components/RequestExample.jsx";
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Cocktail from "./pages/Cocktail.jsx";
+import "./App.css";
+import Header from "./components/Header/header.jsx";
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/home.jsx";
+import NotFound from "./pages/NotFound/notfound.jsx";
+import About from "./pages/About/about.jsx";
 
 function App() {
 
   return (
-     <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cocktail" element={<Cocktail />} />
-        </Routes>
-     </BrowserRouter>
-  )
+    <Routes>
+        <Route path="about" element={<About />} />
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/cocktail" element={<Cocktail />} />
+    </Routes>
+  );
 }
 
-export default App
+export function WrappedApp() {
+  return (
+    <HashRouter>
+      <App />
+    </HashRouter>
+  );
+}
