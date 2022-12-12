@@ -5,13 +5,15 @@ import CountButton from "./components/CountButton.jsx";
 import RequestExample from "./components/RequestExample.jsx";
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import Cocktail from "./pages/Cocktail.jsx";
 
 function App() {
 
   return (
      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/cocktail" element={<Cocktail />} />
         </Routes>
      </BrowserRouter>
   )
