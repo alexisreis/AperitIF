@@ -1,8 +1,11 @@
 import {useEffect} from "react";
 import React from "react";
+import './RequestForOneCocktail.css'
 
-function RequestForOneCocktail() {
-
+function RequestForOneCocktail(nameCocktail) {
+    console.log("PARAMMMEETTERR");
+    console.log(nameCocktail.nameCocktail);
+    var cocktail = nameCocktail.nameCocktail;
     useEffect(() => {
         document.getElementById("requete").innerHTML = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -24,7 +27,7 @@ dbp:prep ?prep;
 dbp:served ?served;
 dbo:thumbnail ?thumbnail.
 Filter (langMatches(lang(?comments), "fr"))
-Filter(?name = "Mojito"@en)
+Filter(?name = "`+cocktail+`"@en)
 }`;
     }, []);
 
@@ -53,6 +56,48 @@ Filter(?name = "Mojito"@en)
         // Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
         // pour vos applications, c'est juste pour la démo sous forme de tableau
         var index = [];
+
+        var Ctitle;
+        var Cimg;
+        var Cingredients;
+        var Ccomment;
+        var Cserved;
+        console.log("DATA");
+        console.log(data.results.bindings[0]);
+        // title
+        Ctitle = data.results.bindings[0].name.value;
+        console.log("Title: ");
+        console.log(data.results.bindings[0].name.value);
+
+        // ingredients
+        Cingredients = data.results.bindings[0].ingredients.value;
+        console.log("Ingredients: ");
+        console.log(data.results.bindings[0].ingredients.value);
+
+        // comment
+        Ccomment = data.results.bindings[0].comments.value;
+        console.log("Comment: ");
+        console.log(data.results.bindings[0].comments.value);
+
+        // image
+        Cimg = data.results.bindings[0].thumbnail.value;
+        console.log("Image: ");
+        console.log(data.results.bindings[0].thumbnail.value);
+
+        // served
+        Cserved = data.results.bindings[0].served.value;
+        console.log("Served: ");
+        console.log(data.results.bindings[0].served.value);
+
+
+        var contenuCocktail = "<h1>";
+        contenuCocktail += Ctitle;
+        contenuCocktail += "</h1>";
+        contenuCocktail += "<p id='comments'>";
+        contenuCocktail += Ccomment;
+        contenuCocktail += "</p>";
+
+
 
         var contenuTableau = "<tr>";
 
@@ -84,7 +129,8 @@ Filter(?name = "Mojito"@en)
 
         contenuTableau += "</tr>";
 
-        document.getElementById("resultats").innerHTML = contenuTableau;
+        // document.getElementById("resultatsOneCocktailTable").innerHTML = contenuTableau;
+        document.getElementById("resultatOneCocktail").innerHTML = contenuCocktail;
 
     }
 
@@ -94,8 +140,14 @@ Filter(?name = "Mojito"@en)
             <textarea id="requete" rows="20" cols="80"></textarea>
             <button onClick={() => rechercher()}>Rechercher</button>
         </div>
-
-        <table id="resultats"></table>
+        {/*<table id="resultatsOneCocktailTable"></table>*/}
+        <p>---------------------------------------------------------------------</p>
+        <p>resultatsOneCocktailTable BEFORE</p>
+        <p>---------------------------------------------------------------------</p>
+        <div id="resultatOneCocktail"></div>
+        <p>---------------------------------------------------------------------</p>
+        <p>resultatsOneCocktailTable AFTER</p>
+        <p>---------------------------------------------------------------------</p>
     </>)
 }
 
