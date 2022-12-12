@@ -3,9 +3,6 @@
     grid-template-rows: 170px 30px;
     height:210px;
     margin:10px;
-    background-color: #a7cdd6;
-    background-color: var(--bg-primary);
-    background-color: lightGrey;
     background-color: #fafafa;
     border-radius:10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
