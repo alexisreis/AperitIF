@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import defaultCocktail from "../img/cocktail.jpg";
+import { Link, Router } from "react-router-dom";
 import './CocktailCard.css'
 
 /*
@@ -23,15 +25,24 @@ class CocktailCard extends Component {
   constructor(props) {
     super(props);
     this.state = {favoritecolor: "red"};
+    this.link = "/#/cocktail/"+props.name;
   }
   render() {
     return (
             <div id="divCard">
-            <img src={this.props.img}/>
-     		<p>{this.props.name}</p>
+            <a href={this.link}>
+            <img src={this.props.img} ref={img => this.img = img} onError={(e) =>
+                (e.target.onerror = null)(
+                  (e.target.src =
+                    defaultCocktail)
+                )
+            }/>
+     		<div><p>{this.props.name}</p></div>
+            </a>
      		</div>
     );
   }
+
 }
 
 
