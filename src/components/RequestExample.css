@@ -31,10 +31,32 @@ margin:0px;
  #requestExample textarea{
 
  display:block;
- margin:auto;}
+ margin:auto;
+ }
+
  #requestExample button{
 margin:auto;
  display:block;
  margin-top:10px;
  margin-bottom:20px;}
 
+@media screen and (max-width: 500px) {
+  #cardsTableau{
+    width:100%;
+    margin:auto;
+  }
+
+  #cardsTableau div{
+      display:grid;
+    grid-template-columns: repeat(3, 32vw);
+    gap: 10px;
+    grid-auto-rows: minmax(200px, auto);
+  margin:0px;
+
+    }
+
+     #requestExample textarea{
+
+     width:100%;
+     }
+}
