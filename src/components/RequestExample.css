@@ -1,0 +1,40 @@
+#resultats{
+ text-align:center;
+ margin-left:20;
+ margin-right:auto;
+}
+
+#resultats th, td{
+    width:100px
+}
+
+#cardsTableau{
+width:fit-content;
+margin:auto;
+}
+
+#cardsTableau div{
+    display:grid;
+  grid-template-columns: repeat(3, 170px);
+  gap: 10px;
+  grid-auto-rows: minmax(200px, auto);
+margin:0px;
+
+  }
+
+ #requestExample{
+ margin:auto;
+ text-align:center;
+ display:block;
+ }
+
+ #requestExample textarea{
+
+ display:block;
+ margin:auto;}
+ #requestExample button{
+margin:auto;
+ display:block;
+ margin-top:10px;
+ margin-bottom:20px;}
+
