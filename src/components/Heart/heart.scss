@@ -1,0 +1,70 @@
+.containerHeart {
+    position: absolute;
+    padding-left: 5px;
+    padding-top: 5px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+}
+
+.buttonHeart {
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 100%;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    background: none;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes take-off-favorite {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(0.9);
+    }
+    40% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#favorite-stroke {
+    animation: 300ms add-favorite forwards;
+    & > svg {
+        stroke: white;
+    }
+}
+
+#favorite-filled {
+    animation: 300ms take-off-favorite forwards ease-in-out;
+}
+
+@keyframes add-favorite {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(0.9);
+        fill: red;
+    }
+    40% {
+        transform: scale(1.1);
+        fill: red;
+    }
+    100% {
+        transform: scale(1);
+        fill: red;
+    }
+}
