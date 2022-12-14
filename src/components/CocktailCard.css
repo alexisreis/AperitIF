@@ -1,6 +1,6 @@
 #divCard{
     display:grid;
-    grid-template-rows: 170px 30px;
+    width: 170px;
     height:210px;
     margin:10px;
     background-color: #fafafa;
@@ -9,7 +9,6 @@
     transition: 0.3s;
 }
 
-/* On mouse-over, add a deeper shadow */
 #divCard:hover {
     grid-template-rows: 210px 0px;
     box-shadow: 0 16px 16px 0 rgba(0,0,0,0.6);
@@ -30,8 +29,8 @@
 
 
 #divCard div p{
-overflow:hidden;
-margin:0px;
+    overflow:hidden;
+    margin:0px;
     height:30px;
     color:black;
     transition:0.3s;
@@ -43,7 +42,6 @@ margin:0px;
 #divCard div{
     margin:0px;
     grid-row:2;
-
     text-overflow:ellipsis;
     height:4vw;
 }
@@ -55,13 +53,10 @@ margin:0px;
     height:32vw;
     width:32vw;
   }
+
   #divCard{
-
     width:100%;
-
-  grid-template-rows: 32vw 10px;
-
-
+    grid-template-rows: 32vw 10px;
     height:40vw;
   }
 }
