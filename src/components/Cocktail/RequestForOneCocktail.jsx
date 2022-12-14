@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import React from "react";
+import CocktailCarousel from "../CocktailCarousel.jsx";
 import './RequestForOneCocktail.css'
 
 function RequestForOneCocktail(nameCocktail) {
@@ -155,6 +156,8 @@ Filter(?name = "`+cocktail+`"@en)
     return (<>
         {/*<table id="resultatsOneCocktailTable"></table>*/}
         <div id="resultatOneCocktail"></div>
+
+        <CocktailCarousel/>
     </>)
 }
 
