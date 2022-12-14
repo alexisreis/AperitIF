@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 
 function RequestExample() {
 
@@ -35,8 +35,13 @@ SELECT * WHERE {
 				afficherResultats(results);
 			}
 		};
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
+/*		xmlhttp.open("GET", url, true);
+		xmlhttp.send();*/
+
+		fetch(`http://dbpedia.org/sparql` + "?query=" + encodeURIComponent(contenu_requete) + "&format=json", {
+			method: "GET"
+		}).then((response) => response.json())
+			.then((data) => console.log(data));
 	}
 
 	// Affichage des résultats dans un tableau
