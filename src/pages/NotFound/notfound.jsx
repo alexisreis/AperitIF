@@ -6,8 +6,10 @@ function NotFound() {
   return (
     <body>
       <Header />
-      <h1>NOT FOUND</h1>
-      <h2>Vite + React + TS (Hamburger + Responsive + Router)</h2>
+      <div className="mainApp">
+          <h1>Breuvage inconnu</h1>
+          <h3>Il est très déconseillé de boire ça...</h3>
+      </div>
       <Footer/>
     </body>
   );
