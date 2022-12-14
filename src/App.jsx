@@ -1,7 +1,7 @@
 import './App.css'
 import React, {useMemo, useState, useEffect} from "react";
 import Cocktail from "./pages/Cocktail/Cocktail.jsx";
-import {HashRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {CocktailContext} from "./context/CocktailContext.js";
 
 import Home from "./pages/Home/home.jsx";
@@ -65,14 +65,14 @@ export default function App() {
 
 	return (
 		<CocktailContext.Provider value={cocktailProvider}>
-			<HashRouter>
+			<BrowserRouter>
 				<Routes>
 					<Route path="about" element={<About/>}/>
 					<Route path="/" element={<Home/>}/>
 					<Route path="*" element={<NotFound/>}/>
 					<Route path="/cocktail/:nameCocktail" element={<Cocktail/>}/>
 				</Routes>
-			</HashRouter>
+			</BrowserRouter>
 		</CocktailContext.Provider>
 	);
 }

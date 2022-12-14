@@ -9,12 +9,12 @@ function Cocktail (){
 
     const{nameCocktail} = useParams();
     return(
-        <body>
+        <>
             <Header />
             <RequestForOneCocktail nameCocktail={nameCocktail}/>
             <DescriptionCocktail />
             <Footer />
-        </body>);
+        </>);
 }
 
 export default Cocktail;
