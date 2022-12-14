@@ -134,9 +134,6 @@ function RequestExample() {
 
 		<Carousel centerMode showThumbs={false} infiniteLoop={true} centerSlidePercentage={30}>
 
-                        {numbers.map((number) =>
-                            // Correct! Key should be specified inside the array.
-                        <ListItem key={number.toString()} value={number} />}
                         {children}
 
                         <CocktailCard img="https://www.shorturl.at/img/shorturl-icon.png" name="qsjsdl"/>
