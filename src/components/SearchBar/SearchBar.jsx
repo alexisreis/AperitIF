@@ -1,10 +1,12 @@
 import { Search, Option, Detail } from "searchpal";
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import "./SearchBar.scss"
+import {CocktailContext} from "../../context/CocktailContext.js";
 
-const SearchBar = ({ cocktails, session }) => {
+const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
+	const {cocktails} = useContext(CocktailContext);
 
 	return (
 		<>

@@ -10,7 +10,7 @@ function Home() {
     <div>
       <Header />
       <h1>Home</h1>
-        <SearchBar cocktails={cocktails}/>
+        <SearchBar/>
       <RequestExample/>
       <Footer/>
     </div>
