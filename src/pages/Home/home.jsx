@@ -5,13 +5,13 @@ import RequestExample from "../../components/RequestExample.jsx";
 
 function Home() {
   return (
-    <body>
+    <div>
       <Header />
       <h1>Home</h1>
       <h2>Vite + React (Hamburger + Responsive + Router)</h2>
       <RequestExample/>
       <Footer/>
-    </body>
+    </div>
   );
 }
 
