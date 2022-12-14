@@ -22,8 +22,7 @@ const SearchBar = ({ cocktails, session }) => {
 						       role="combobox" aria-expanded="false"
 						       aria-controls="298dc1ea-4e6b-43de-85b6-a533bb79cfe2-results"
 						       id="searchbar-label"
-						       autoComplete="off" className="sc-iTFTee dZgGse"
-						       value=""/>
+						       autoComplete="off" className="sc-iTFTee dZgGse"/>
 
 					</div>
 				</div>
