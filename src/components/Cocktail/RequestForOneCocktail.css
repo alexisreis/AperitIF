@@ -1,7 +1,7 @@
-h1{
+#h1cocktail{
     font-size: 5rem;
     text-align: center;
-    margin: 0px;
+    margin: 10px 0px;
     padding: 0px;
     text-shadow: rgb(20, 0, 0, 0.5) 2px 3px;
 }

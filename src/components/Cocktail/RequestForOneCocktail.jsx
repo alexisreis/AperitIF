@@ -87,7 +87,7 @@ Filter(?name = "`+cocktail+`"@en)
         console.log(data.results.bindings[0].served.value);
 
 
-        var contenuCocktail = "<h1>";
+        var contenuCocktail = "<h1 id='h1cocktail'>";
         contenuCocktail += Ctitle;
         contenuCocktail += "</h1>";
 
