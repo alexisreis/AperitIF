@@ -51,8 +51,11 @@ function Header() {
             <li>
               <Link to="/about">À propos</Link>
             </li>
-            <Link to="/register">
-              <button className="btn">Register</button>
+            <li>
+              <Link to="/favoris">Favoris</Link>
+            </li>
+            <Link to="/cocktail/Alexander">
+              <button className="btn">Random</button>
             </Link>
           </ul>
         </nav>

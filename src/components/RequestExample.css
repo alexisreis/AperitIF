@@ -24,12 +24,6 @@
  margin:auto;
  }
 
- #requestExample button{
-margin:auto;
- display:block;
- margin-top:10px;
- margin-bottom:20px;}
-
 @media screen and (max-width: 500px) {
   #cardsTableau{
     width:100%;
