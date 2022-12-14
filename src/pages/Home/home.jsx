@@ -8,7 +8,6 @@ function Home() {
     <div>
       <Header />
       <h1>Home</h1>
-      <h2>Vite + React (Hamburger + Responsive + Router)</h2>
       <RequestExample/>
       <Footer/>
     </div>

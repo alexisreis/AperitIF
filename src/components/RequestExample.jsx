@@ -8,9 +8,7 @@ import {useState} from "react";
 import './RequestExample.css'
 function RequestExample() {
 
-
-	useEffect(() => {
-		document.getElementById("requete").innerHTML = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    var requete = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
 		                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 		                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -32,11 +30,9 @@ function RequestExample() {
                           Filter (langMatches(lang(?comments), "fr"))
 
                           }`;
-                          // Filter(?name = "Mojito"@en)
-	}, []);
 
 	const rechercher = () => {
-		var contenu_requete = document.getElementById("requete").value;
+		var contenu_requete = requete;
 		// Encodage de l'URL à transmettre à DBPedia
 		var url_base = "http://dbpedia.org/sparql";
 		var url = url_base + "?query=" + encodeURIComponent(contenu_requete) + "&format=json";
@@ -115,15 +111,16 @@ function RequestExample() {
         //document.getElementById("resultats").innerHTML= "<CocktailCard name=\"JoLeCocktail\" imgUrl=\"https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/grand-canyon-2068602/21717382-2-fre-FR/Cocktail-grand-canyon\"/>";
 
 	}
-
-
+    rechercher();
 	return (<div id="requestExample">
-			<textarea id="requete" rows="20" cols="80"></textarea>
+			{/* <textarea id="requete" rows="20" cols="80"></textarea>
 			<button onClick={() => rechercher()}>Rechercher</button>
 
-		<table id="resultats"></table>
-		<div id="cardsTableau">
+		<table id="resultats"></table> */}
 
+		<h2>Les cocktails que nous vous proposons...</h2>
+
+		<div id="cardsTableau">
         {children}
         </div>
 	</div>)
