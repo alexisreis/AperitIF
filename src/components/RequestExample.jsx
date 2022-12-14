@@ -7,7 +7,7 @@ import { createElement } from "react";
 import {useState} from "react";
 import './RequestExample.css'
 function RequestExample() {
-
+	var jsonCocktails = [];
     var requete = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
 		                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -84,13 +84,14 @@ function RequestExample() {
 // 						contenuTableau += "<td>" + r[v].value + "</td>";
 						nameC = r[v].value;
 						console.log(r[v].value);
-						console.log(typeof nameC);
 					}
 				} else {
 // 					contenuTableau += "<td></td>";
 				}
 
 			});
+
+			jsonCocktails.push({name: nameC, img:imgC});
 
 				var card2=React.createElement(CocktailCard, {name:nameC, img:imgC});
 				children.push(card2);
@@ -100,15 +101,10 @@ function RequestExample() {
 
 // 			contenuTableau += "</tr>";
 		});
+		console.log(jsonCocktails);
 		var cardsTableau = React.createElement('div',{id:'cardsGrid'},children);
-// 		children.forEach(element => ReactDOM.render(element, document.getElementById('cardsTableau')));
         ReactDOM.render(cardsTableau, document.getElementById('cardsTableau'));
 
-// 		contenuTableau += "</tr>";
-
-		//document.getElementById("resultats").innerHTML = contenuTableau;
-        //document.getElementById("resultats").appendChild(cardsTableau);
-        //document.getElementById("resultats").innerHTML= "<CocktailCard name=\"JoLeCocktail\" imgUrl=\"https://cdn-elle.ladmedia.fr/var/plain_site/storage/images/elle-a-table/recettes-de-cuisine/grand-canyon-2068602/21717382-2-fre-FR/Cocktail-grand-canyon\"/>";
 
 	}
     rechercher();
