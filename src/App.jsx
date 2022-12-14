@@ -1,8 +1,7 @@
 import "./App.css";
+import Header from "./components/Header/header.jsx";
 import React from "react";
 import Cocktail from "./pages/Cocktail/Cocktail.jsx";
-import "./App.css";
-import Header from "./components/Header/header.jsx";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/home.jsx";
 import NotFound from "./pages/NotFound/notfound.jsx";
