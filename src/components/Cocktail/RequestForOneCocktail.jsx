@@ -25,7 +25,7 @@ rdfs:comment ?comments;
 dbp:prep ?prep;
 dbp:served ?served;
 dbo:thumbnail ?thumbnail.
-Filter (langMatches(lang(?comments), "fr"))
+Filter (langMatches(lang(?comments), "en"))
 Filter(?name = "`+cocktail+`"@en)
 }`;
     const rechercher = () => {
@@ -59,6 +59,7 @@ Filter(?name = "`+cocktail+`"@en)
         var Cingredients; // ok
         var Ccomment; // ok
         var Cserved;
+        var TabIngredients = [];
         console.log("DATA");
         console.log(data.results.bindings[0]);
         // title
@@ -69,8 +70,25 @@ Filter(?name = "`+cocktail+`"@en)
         // ingredients
         Cingredients = data.results.bindings[0].ingredients.value;
         console.log("Ingredients: ");
-        console.log(data.results.bindings[0].ingredients.value);
+        console.log(Cingredients);
 
+        // console.log(Cingredients.contains('*'));
+        var myIndex = Cingredients.toString().indexOf('*', 0);
+        var i= 0;
+        while (myIndex != -1){
+            const pastIndex = myIndex;
+            myIndex = Cingredients.toString().indexOf('*', myIndex+1);
+            console.log(pastIndex, myIndex, Cingredients.toString().length-1);
+            if(myIndex != -1){
+                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1, myIndex);
+            }
+            else{
+                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1,Cingredients.toString().length);
+            }
+            i= i+1;
+        }
+        console.log("TabIngredientssss");
+        console.log(TabIngredients);
         // comment
         Ccomment = data.results.bindings[0].comments.value;
         console.log("Comment: ");
@@ -96,8 +114,20 @@ Filter(?name = "`+cocktail+`"@en)
         contenuCocktail += "<p id='comments'>";
         contenuCocktail += Ccomment;
         contenuCocktail += "</p>";
-        contenuCocktail += "<div id='ingredients'>"
-        contenuCocktail += Cingredients;
+        contenuCocktail += "<div id='ingredients'>";
+        contenuCocktail += "<div class='align'>";
+        contenuCocktail += "<button onClick={} type='button' class='numberPersonsPlusMoins'>-</button>"
+        contenuCocktail += "<p class='textNumberPersons'>For</p>";
+        contenuCocktail += "<p id='numberPersons'>x</p>";
+        contenuCocktail += "<p class='textNumberPersons'>person(s)</p>";
+        contenuCocktail += "<input onclick='augmenter()' type='button' class='numberPersonsPlusMoins' value='+' >"
+        contenuCocktail += "</div>";
+        // contenuCocktail += Cingredients;
+        for(var ingre in  TabIngredients) {
+            contenuCocktail += "<div class='eachIngredient'>";
+            contenuCocktail += TabIngredients[ingre];
+            contenuCocktail += "</div>";
+        }
         contenuCocktail += "</div>";
         contenuCocktail += "</div>";
         contenuCocktail += "<div>";
