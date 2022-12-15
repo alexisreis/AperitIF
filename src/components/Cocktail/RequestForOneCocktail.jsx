@@ -53,7 +53,7 @@ Filter(?name = "`+cocktail+`"@en)
         // Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
         // pour vos applications, c'est juste pour la démo sous forme de tableau
         var index = [];
-
+        var varTest =0;
         var Ctitle; // ok
         var Cimg; // ok
         var Cingredients; // ok
@@ -115,12 +115,12 @@ Filter(?name = "`+cocktail+`"@en)
         contenuCocktail += Ccomment;
         contenuCocktail += "</p>";
         contenuCocktail += "<div id='ingredients'>";
-        contenuCocktail += "<div class='align'>";
-        contenuCocktail += "<button onClick={} type='button' class='numberPersonsPlusMoins'>-</button>"
+        contenuCocktail += "<div class='align'>"; //parseInt(document.getElementById('numberPersons').textContent)
+        contenuCocktail += "<button onClick={if(parseInt(document.getElementById('numberPersons').textContent)!=1)document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)-1;} class='numberPersonsPlusMoins'>-</button>"
         contenuCocktail += "<p class='textNumberPersons'>For</p>";
-        contenuCocktail += "<p id='numberPersons'>x</p>";
+        contenuCocktail += "<p id='numberPersons'>1</p>";
         contenuCocktail += "<p class='textNumberPersons'>person(s)</p>";
-        contenuCocktail += "<input onclick='augmenter()' type='button' class='numberPersonsPlusMoins' value='+' >"
+        contenuCocktail += "<button onClick={document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)+1;}  class='numberPersonsPlusMoins'>+</button>"
         contenuCocktail += "</div>";
         // contenuCocktail += Cingredients;
         for(var ingre in  TabIngredients) {
