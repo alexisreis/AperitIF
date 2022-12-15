@@ -1,7 +1,6 @@
 import {useEffect} from "react";
 import React from "react";
 import './RequestForOneCocktail.css'
-
 function RequestForOneCocktail(nameCocktail) {
     console.log("PARAMMMEETTERR");
     console.log(nameCocktail.nameCocktail);
@@ -28,6 +27,8 @@ dbo:thumbnail ?thumbnail.
 Filter (langMatches(lang(?comments), "en"))
 Filter(?name = "`+cocktail+`"@en)
 }`;
+
+    var varTest =1;
     const rechercher = () => {
         var contenu_requete = recherche;
 
@@ -53,13 +54,14 @@ Filter(?name = "`+cocktail+`"@en)
         // Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
         // pour vos applications, c'est juste pour la démo sous forme de tableau
         var index = [];
-        var varTest =0;
+        var varTest =1;
         var Ctitle; // ok
         var Cimg; // ok
         var Cingredients; // ok
         var Ccomment; // ok
         var Cserved;
         var TabIngredients = [];
+        var Quantity = [];
         console.log("DATA");
         console.log(data.results.bindings[0]);
         // title
@@ -75,18 +77,57 @@ Filter(?name = "`+cocktail+`"@en)
         // console.log(Cingredients.contains('*'));
         var myIndex = Cingredients.toString().indexOf('*', 0);
         var i= 0;
+        console.log("************************************************")
         while (myIndex != -1){
             const pastIndex = myIndex;
             myIndex = Cingredients.toString().indexOf('*', myIndex+1);
             console.log(pastIndex, myIndex, Cingredients.toString().length-1);
+            let jj = 0;
             if(myIndex != -1){
-                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1, myIndex);
+                const ingreTemp = Cingredients.toString().substring(pastIndex+1, myIndex);
+                for(jj; jj<ingreTemp.length; jj++){
+                    var caraTemp = ingreTemp.charAt(jj);
+                    console.log("caraTemp"+caraTemp);
+                    if ((caraTemp >= '0' && caraTemp <= '9')|| caraTemp== ' ' || caraTemp == ',' || caraTemp =='.') {
+                        console.log("number: "+ caraTemp);
+                    }
+                    else{
+                        if(jj!=0){
+                            Quantity[i] = ingreTemp.substring(0,jj);
+                        }
+                        else{
+                            Quantity[i] = " ";
+                        }
+                        break;
+                    }
+                }
+                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1+jj, myIndex);
             }
             else{
-                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1,Cingredients.toString().length);
+                const ingreTemp2 = Cingredients.toString().substring(pastIndex+1, Cingredients.toString().length);
+                for(jj; jj<ingreTemp2.length; jj++){
+                    var caraTemp2 = ingreTemp2.charAt(jj);
+                    console.log("caraTemp"+caraTemp2);
+                    if ((caraTemp2 >= '0' && caraTemp2 <= '9')|| caraTemp2== ' ' || caraTemp2 == ',' || caraTemp2 =='.' || caraTemp2 =='*') {
+                        console.log("number: "+ caraTemp2);
+                    }
+                    else{
+                        if(jj!=0){
+                            Quantity[i] = ingreTemp2.substring(0,jj);
+                        }
+                        else{
+                            Quantity[i] = " ";
+                        }
+                        break;
+                    }
+                }
+                // refaire pareil pour la quantity pour le dernier ingrédient
+                TabIngredients[i] = Cingredients.toString().substring(pastIndex+1+jj,Cingredients.toString().length);
             }
             i= i+1;
         }
+        console.log("Quantityyyy");
+        console.log(Quantity)
         console.log("TabIngredientssss");
         console.log(TabIngredients);
         // comment
@@ -104,11 +145,14 @@ Filter(?name = "`+cocktail+`"@en)
         console.log("Served: ");
         console.log(data.results.bindings[0].served.value);
 
-
         var contenuCocktail = "<h1 id='h1cocktail'>";
+        contenuCocktail += "<script>";
+        contenuCocktail += "function augmenter(){";
+        contenuCocktail += "console.log('testtt');";
+        contenuCocktail += "}";
+        contenuCocktail += "</script>";
         contenuCocktail += Ctitle;
         contenuCocktail += "</h1>";
-
         contenuCocktail += "<div class='align'>";
         contenuCocktail += "<div>"
         contenuCocktail += "<p id='comments'>";
@@ -119,12 +163,20 @@ Filter(?name = "`+cocktail+`"@en)
         contenuCocktail += "<button onClick={if(parseInt(document.getElementById('numberPersons').textContent)!=1)document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)-1;} class='numberPersonsPlusMoins'>-</button>"
         contenuCocktail += "<p class='textNumberPersons'>For</p>";
         contenuCocktail += "<p id='numberPersons'>1</p>";
-        contenuCocktail += "<p class='textNumberPersons'>person(s)</p>";
-        contenuCocktail += "<button onClick={document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)+1;}  class='numberPersonsPlusMoins'>+</button>"
+        contenuCocktail += "<p class='textNumberPersons'>person(s)</p>"; // document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)+1;
+        contenuCocktail += "<button  onClick={document.getElementById('numberPersons').textContent=parseInt(document.getElementById('numberPersons').textContent)+1;console.log(document.getElementsByClassName('ab').length);if(0<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[0].textContent=(parseInt(document.getElementsByClassName('ab')[0].textContent))*parseInt(document.getElementById('numberPersons').textContent)/(parseInt(document.getElementById('numberPersons').textContent)-1);if(1<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[1].textContent=(parseInt(document.getElementsByClassName('ab')[1].textContent))*parseInt(document.getElementById('numberPersons').textContent)/(parseInt(document.getElementById('numberPersons').textContent)-1);if(2<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[2].textContent=(parseInt(document.getElementsByClassName('ab')[2].textContent))*parseInt(document.getElementById('numberPersons').textContent)/(parseInt(document.getElementById('numberPersons').textContent)-1);} class='numberPersonsPlusMoins'>+</button>"
         contenuCocktail += "</div>";
+        contenuCocktail += "<IngreUnique />";
         // contenuCocktail += Cingredients;
         for(var ingre in  TabIngredients) {
-            contenuCocktail += "<div class='eachIngredient'>";
+            contenuCocktail += "<IngreUnique />";
+            contenuCocktail += "<div class='eachIngredient'}>";
+            contenuCocktail += "<label class='ab'>";
+            contenuCocktail += parseInt(Quantity[ingre]);
+            contenuCocktail += "</label>";
+            // console.log(document.getElementById('numberPersons').textContent);
+            // contenuCocktail += document.getElementById('numberPersons').textContent.toString();
+            // contenuCocktail += (parseInt(Quantity[ingre])* parseInt(document.getElementById('numberPersons').textContent)).toString();
             contenuCocktail += TabIngredients[ingre];
             contenuCocktail += "</div>";
         }
