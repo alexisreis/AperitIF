@@ -9,7 +9,7 @@ function CocktailCard({name, img}) {
 			<a href={"/#/cocktail/" + name}>
 				<img src={img ? img : defaultCocktail}
 				     onError={(e) =>
-					     (e.target.onerror = null)(
+					     (e.target.error = null)(
 						     (e.target.src =
 							     defaultCocktail)
 					     )}/>

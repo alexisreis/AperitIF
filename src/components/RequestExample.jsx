@@ -41,7 +41,7 @@ function RequestExample() {
 			.then((data) => {
 				 if(data.results.bindings.length){
 					 setCards(data.results.bindings);
-					 console.log(data.results.bindings);
+					 //console.log(data.results.bindings);
 				 }
 			});
 	}
