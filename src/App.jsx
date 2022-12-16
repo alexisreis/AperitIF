@@ -1,28 +1,78 @@
-import "./App.css";
-import Header from "./components/Header/header.jsx";
-import React from "react";
+import './App.css'
+import React, {useMemo, useState, useEffect} from "react";
 import Cocktail from "./pages/Cocktail/Cocktail.jsx";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {CocktailContext} from "./context/CocktailContext.js";
+
 import Home from "./pages/Home/home.jsx";
 import NotFound from "./pages/NotFound/notfound.jsx";
 import About from "./pages/About/about.jsx";
 
-function App() {
+export default function App() {
 
-  return (
-    <Routes>
-        <Route path="about" element={<About />} />
-        <Route exact path="/" element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="cocktail/:nameCocktail" element={<Cocktail />} />
-    </Routes>
-  );
-}
+	var requete = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
+		                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+		                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+		                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+		                  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+		                  PREFIX dc: <http://purl.org/dc/elements/1.1/>
+		                  PREFIX : <http://dbpedia.org/resource/>
+		                  PREFIX dbpedia2: <http://dbpedia.org/property/>
+		                  PREFIX dbpedia: <http://dbpedia.org/>
+		                  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+		                  \n
+                          SELECT distinct ?thumbnail ?name WHERE {
+                          ?cocktail dbp:type ?type;
+                          dbp:name ?name;
+                          dbp:ingredients ?ingredients;
+                          rdfs:comment ?comments;
+                          dbp:prep ?prep;
+                          dbp:served ?served;
+                          dbo:thumbnail ?thumbnail.
+                          Filter (langMatches(lang(?comments), "fr"))
+                          }`;
 
-export function WrappedApp() {
-  return (
-    <HashRouter>
-      <App />
-    </HashRouter>
-  );
+	const [cocktails, setCocktails] = useState([]);
+	const cocktailProvider = useMemo(() => ({
+		cocktails,
+		setCocktails
+	}), [cocktails, setCocktails]);
+
+	useEffect(() => {
+		var contenu_requete = requete;
+
+		// Encodage de l'URL à transmettre à DBPedia
+		var url = "http://dbpedia.org/sparql?query="
+			+ encodeURIComponent(contenu_requete) + "&format=json";
+
+		fetch(url, {method: 'GET'})
+			.then(response => response.json())
+			.then((data) => {
+				if(data.results.bindings.length){
+					afficherResultats(data.results.bindings);
+				}
+			});
+	}, []);
+
+	// Affichage des résultats dans un tableau
+	const afficherResultats = (data) => {
+		var jsonCocktails = [];
+		data.forEach(cocktail => {
+			jsonCocktails.push({name: cocktail.name.value, img:cocktail.thumbnail.value});
+		});
+		setCocktails(jsonCocktails);
+	}
+
+	return (
+		<CocktailContext.Provider value={cocktailProvider}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="about" element={<About/>}/>
+					<Route path="/" element={<Home/>}/>
+					<Route path="*" element={<NotFound/>}/>
+					<Route path="/cocktail/:nameCocktail" element={<Cocktail/>}/>
+				</Routes>
+			</BrowserRouter>
+		</CocktailContext.Provider>
+	);
 }
