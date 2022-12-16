@@ -1,47 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import defaultCocktail from "../img/cocktail.jpg";
-import { Link, Router } from "react-router-dom";
 import './CocktailCard.css'
 
-/*
+function CocktailCard({name, img}) {
 
-function CocktailCard(props) {
-    let name = props.name;
-    let imgUrl = props.imgUrl;
-
-    console.log("HEY IM IN");
 	return (
-
 		<div id="divCard">
-		    <p>AAAAAAAH</p>
+			<a href={"/cocktail/" + name}>
+				<img src={img ? img : defaultCocktail}
+				     onError={(e) =>
+					     (e.target.onerror = null)(
+						     (e.target.src =
+							     defaultCocktail)
+					     )}/>
+				<div><p>{name}</p></div>
+			</a>
 		</div>
 	)
-}
- */
-
-
-
-class CocktailCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {favoritecolor: "red"};
-    this.link = "/#/cocktail/"+props.name;
-  }
-  render() {
-    return (
-            <div id="divCard">
-            <a href={this.link}>
-            <img src={this.props.img} ref={img => this.img = img} onError={(e) =>
-                (e.target.onerror = null)(
-                  (e.target.src =
-                    defaultCocktail)
-                )
-            }/>
-     		<div><p>{this.props.name}</p></div>
-            </a>
-     		</div>
-    );
-  }
 
 }
 

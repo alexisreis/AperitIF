@@ -1,10 +1,12 @@
 import { Search, Option, Detail } from "searchpal";
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import "./SearchBar.scss"
+import {CocktailContext} from "../../context/CocktailContext.js";
 
-const SearchBar = ({ cocktails, session }) => {
+const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
+	const {cocktails} = useContext(CocktailContext);
 
 	return (
 		<>
@@ -22,8 +24,7 @@ const SearchBar = ({ cocktails, session }) => {
 						       role="combobox" aria-expanded="false"
 						       aria-controls="298dc1ea-4e6b-43de-85b6-a533bb79cfe2-results"
 						       id="searchbar-label"
-						       autoComplete="off" className="sc-iTFTee dZgGse"
-						       value=""/>
+						       autoComplete="off" className="sc-iTFTee dZgGse"/>
 
 					</div>
 				</div>
@@ -48,7 +49,7 @@ const SearchBar = ({ cocktails, session }) => {
 						label={cocktail.name}
 						sublabel={cocktail.name}
 						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
-						href={`/#/cocktail/${cocktail.name}`}
+						href={`/cocktail/${cocktail.name}`}
 						keywords={(getKeywords) =>
 							getKeywords(
 								cocktail.name,
