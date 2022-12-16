@@ -5,7 +5,7 @@ import Member from "../../components/Member/member.jsx";
 
 function about() {
   return (
-    <div>
+    <>
       <Header />
       <h1>À propos</h1>
       <h2>Projet réalisé par 7 étudiants de 4ème année du département informatique de l'INSA de Lyon dans le cadre d'un mini-projet de cours.</h2>
@@ -18,7 +18,7 @@ function about() {
       <Member name="Colin"/>
       <Member name="Eva"/>
       <Footer/>
-    </div>
+    </>
   );
 }
 

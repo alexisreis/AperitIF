@@ -6,7 +6,7 @@ function CocktailCard({name, img}) {
 
 	return (
 		<div id="divCard">
-			<a href={"/#/cocktail/" + name}>
+			<a href={"/cocktail/" + name}>
 				<img src={img ? img : defaultCocktail}
 				     onError={(e) =>
 					     (e.target.onerror = null)(

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useContext} from "react";
 import CocktailCard from "./CocktailCard.jsx";
 import './RequestExample.css'
 import {CocktailContext} from "../context/CocktailContext.js";

@@ -49,7 +49,7 @@ const SearchBar = () => {
 						label={cocktail.name}
 						sublabel={cocktail.name}
 						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
-						href={`/#/cocktail/${cocktail.name}`}
+						href={`/cocktail/${cocktail.name}`}
 						keywords={(getKeywords) =>
 							getKeywords(
 								cocktail.name,
