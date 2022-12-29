@@ -7,6 +7,7 @@ import { createElement } from "react";
 import {useState} from "react";
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import Slider from "react-slick";
 import './CocktailCarousel.css'
 function CocktailCarousel(listeCocktails) {
     const [cards, setCards] = useState([]);
@@ -15,15 +16,32 @@ function CocktailCarousel(listeCocktails) {
             setCards(listeCocktails.cocktails);
     	}, [])
 
-	return (<div>
+    /* const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 8,
+      slidesToScroll: 3,
+      lazyLoad: true,
+    }; */
 
-		<Carousel centerMode showThumbs={false} infiniteLoop={false} centerSlidePercentage={20}>
+	return (<div className="carouselDiv">
+
+		<Carousel centerMode showStatus={false} showIndicators={false} showThumbs={true} infiniteLoop={false} centerSlidePercentage={20}>
 
             {cards.map((card, index) =>
                             <CocktailCard key={index} name={card.get("name")} img={card.get("thumbnail")} />
             )}
         </Carousel>
 
+        {/* <Slider {...settings}>
+
+                    {cards.map((card, index) =>
+                            <div>
+                                    <CocktailCard key={index} name={card.get("name")} img={card.get("thumbnail")} />
+                            </div>
+                    )}
+        </Slider> */}
 
 
 	</div>)
