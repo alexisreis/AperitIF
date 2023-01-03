@@ -20,7 +20,7 @@ const SearchBar = () => {
 					</svg>
 					<div id="searchbar-text-div">
 						<input type="text"
-						       placeholder="Rechercher un cocktail..."
+						       placeholder="Look up a cocktail..."
 						       role="combobox" aria-expanded="false"
 						       aria-controls="298dc1ea-4e6b-43de-85b6-a533bb79cfe2-results"
 						       id="searchbar-label"
@@ -31,11 +31,11 @@ const SearchBar = () => {
 			</div> : null}
 			<Search
 				labels={{
-					results: "Cocktails trouvés",
-					subtitle: "Recherche ton meilleur breuvage aussi",
-					noResults: {title: "Aucun cocktail trouvé", subtitle: "Désolé tu vas avoir soif"}
+					results: "Found cocktails",
+					subtitle: "Look up for your best beverage",
+					noResults: {title: "No cocktail found :'(", subtitle: "Sorry, you're gonna be thirsty"}
 				}}
-				label="Rechercher un cocktail..."
+				label="Look up a cocktail..."
 				dark={false}
 				open={open}
 				algo={"combo"}

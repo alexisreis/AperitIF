@@ -44,14 +44,14 @@ export default function Member(props) {
 
    return (
       <Box component={'main'} display={'flex'} flexDirection={{xs: 'column', md: 'row'}} alignItems={'center'}
-           justifyContent={'center'} minHeight={'calc(100vh - 175px)'}>
-         <Box className="avatar shadowed" alt={props.name} style={{background: data.gradient}} component={'img'} src={url} width={{xs: '35vh', md: '40vh'}}
-              height={{xs: '35vh', md: '40vh'}}
+           justifyContent={'center'} minHeight={'calc(50vh - 87.5px)'}>
+         <Box className="avatar shadowed" alt={props.name} style={{background: data.gradient}} component={'img'} src={url} width={{xs: '17.5vh', md: '20vh'}}
+              height={{xs: '17.5vh', md: '20vh'}}
               borderRadius={'50%'} p={'0.75rem'} mb={{xs: '1rem', sm: 0}} mr={{xs: 0, md: '2rem'}}/>
          <Box>
-            <h1>Hi, I'm <span style={{background: data.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>{data.firstName}</span><span className="hand">🤚</span>
-            </h1>
-            <h2>I'm {data.position}.</h2>
+            <h3>Hi, I'm <span style={{background: data.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>{data.firstName}</span><span className="hand">🤚</span>
+            </h3>
+            <h4>I'm {data.position}.</h4>
             <Box component={'ul'} p={'0.8rem'}>
                {data.miniBio.map((bio, index) => (
                   <EmojiBullet key={index} emoji={bio.emoji} text={bio.text}/>

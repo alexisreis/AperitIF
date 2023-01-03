@@ -11,8 +11,10 @@ function Alcool (){
     return(
         <>
             <Header />
-            <RequestForOneAlcool nameAlcool={nameAlcool}/>
-            <DescriptionAlcool />
+            <div className="bodyPage">
+                <RequestForOneAlcool nameAlcool={nameAlcool}/>
+                <DescriptionAlcool />
+            </div>
             <Footer />
         </>);
 }

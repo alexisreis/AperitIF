@@ -10,7 +10,7 @@
 }
         
         .header {
-            background: rgb(32, 32, 32);
+            background: rgba(255, 72, 72, 0.9);
             width: 100%;
             height: 100px;
             padding: 0 1.5rem;
@@ -18,6 +18,14 @@
                 padding: 0 3rem;
             }
             transition: 0.3s ease all;
+
+            .title {
+                line-height: 0.05pt;
+            }
+            .subtitle {
+                font-size: 8pt;
+                line-height: 0.05pt;
+            }
         
             &__content {
                 overflow: hidden;

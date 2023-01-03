@@ -11,8 +11,10 @@ function Cocktail (){
     return(
         <>
             <Header />
-            <RequestForOneCocktail nameCocktail={nameCocktail}/>
-            <DescriptionCocktail />
+            <div className="bodyPage">
+                <RequestForOneCocktail nameCocktail={nameCocktail}/>
+                <DescriptionCocktail />
+            </div>
             <Footer />
         </>);
 }
