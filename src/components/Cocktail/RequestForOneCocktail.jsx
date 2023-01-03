@@ -218,7 +218,8 @@ function RequestForOneCocktail(nameCocktail) {
         // contenuCocktail += Cingredients;
         for(var ingre in  TabIngredients) {
             contenuCocktail += "<IngreUnique />";
-            contenuCocktail += "<div class='eachIngredient'}>";
+            contenuCocktail += "<div class='eachIngredient'>";
+            contenuCocktail += "➡️  ";
             contenuCocktail += "<label class='ab'>";
             if(Quantity[ingre]!=" "){
                 contenuCocktail += parseFloat(Quantity[ingre]);

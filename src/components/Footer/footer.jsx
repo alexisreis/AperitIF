@@ -11,7 +11,7 @@ function Footer() {
                 <br/>
                 Project realised by {" "}
                 <Link to="/about">
-                    a students team
+                    a students' team
                 </Link>
             </p>
         </footer>

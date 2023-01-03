@@ -62,7 +62,7 @@ const SearchBar = () => {
 
 				{alcools.map((cocktail) => (
 					<Option
-						label={"alcool-"+cocktail.name}
+						label={"INGREDIENT - "+cocktail.name}
 						sublabel={cocktail.name}
 						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
 						href={`/alcool/${cocktail.name}`}
