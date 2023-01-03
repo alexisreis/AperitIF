@@ -29,8 +29,8 @@ dbo:wikiPageWikiLink ?liensSP.
 rdfs:comment ?comm;
 dbo:thumbnail ?thumbnail2;
 dbp:name ?nameSP.
-Filter (langMatches(lang(?comm), "fr"))
-Filter (langMatches(lang(?comments), "fr"))
+Filter (langMatches(lang(?comm), "en"))
+Filter (langMatches(lang(?comments), "en"))
 Filter(?typeSP != "cocktail"@en && ?typeSP != "Cocktail"@en )
 Filter(?typeSousPageSP = "cocktail"@en)
 FILTER(?name="`+alcool+`"@en)
@@ -100,7 +100,7 @@ FILTER(?name="`+alcool+`"@en)
         contenuAlcool += "</div>";
         contenuAlcool+= "</div>";
         contenuAlcool+= "</div>";
-        contenuAlcool +="<h2>Cocktails faits avec cet alcool</h2>"
+        contenuAlcool +="<h2>Cocktails made with this ingredient:</h2>"
         contenuAlcool += "<div id='suggestion'>"
         contenuAlcool += "<ul class='no-bullets'>";
         for(var i=0;i<data.results.bindings.length;i++){

@@ -65,5 +65,13 @@
 
 }
 #resultatOneCocktail{
-margin-bottom:50px;
+margin-bottom:80px;
+}
+
+.eachIngredient {
+    padding-left: 50px;
+}
+
+.ab {
+    font-weight: bold;
 }
