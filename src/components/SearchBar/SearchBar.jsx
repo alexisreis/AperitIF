@@ -6,7 +6,7 @@ import {CocktailContext} from "../../context/CocktailContext.js";
 const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
-	const {cocktails} = useContext(CocktailContext);
+	const {cocktails,alcools} = useContext(CocktailContext);
 
 	return (
 		<>
@@ -29,7 +29,6 @@ const SearchBar = () => {
 					</div>
 				</div>
 			</div> : null}
-
 			<Search
 				labels={{
 					results: "Cocktails trouvés",
@@ -59,7 +58,27 @@ const SearchBar = () => {
 					>
 					</Option>
 				))}
+
+
+				{alcools.map((cocktail) => (
+					<Option
+						label={"alcool-"+cocktail.name}
+						sublabel={cocktail.name}
+						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
+						href={`/alcool/${cocktail.name}`}
+						keywords={(getKeywords) =>
+							getKeywords(
+								cocktail.name,
+							)
+						}
+						key={cocktail.name}
+					>
+					</Option>
+				))}
+
+
 			</Search>
+
 		</>
 	)
 };
