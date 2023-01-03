@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../Header/header.jsx";
 import {Link} from "react-router-dom";
-
+import './footer.css'
 
 function Footer() {
     return (
