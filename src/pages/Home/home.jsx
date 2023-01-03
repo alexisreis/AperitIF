@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Header />
-      <h1>Home</h1>
+      <h1>'Bienvenue' as we say in French !</h1>
         <SearchBar/>
       <RequestExample/>
       <Footer/>

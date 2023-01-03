@@ -17,7 +17,7 @@ function RequestForOneCocktail(nameCocktail) {
                      ?cocktail
                      rdfs:comment ?comments.
 
-                     Filter (langMatches(lang(?comments), "fr"))
+                     Filter (langMatches(lang(?comments), "en"))
                      }
                      OPTIONAL{
                      ?cocktail
@@ -323,7 +323,7 @@ function RequestForOneCocktail(nameCocktail) {
 
             {cocktailsIngredients.map((ingredient, index) =>
                 <>
-                <h3> Cocktails contenant aussi l'ingrédient : {ingredient.get("ingredient")} </h3>
+                <h3> Cocktails also containing : {ingredient.get("ingredient")} </h3>
 				<CocktailCarousel key={index} cocktails={ingredient.get("cocktails")}  />
 				</>
 			)}
