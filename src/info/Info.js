@@ -68,8 +68,8 @@ export const Simon = {
     baseColor: colors[0],
     miniBio: [ // these are just some "tidbits" about yourself. You can look at mine https://paytonjewell.github.io/#/ for an example if you'd like
         {
-            emoji: '☕',
-            text: 'fueled by coffee'
+            emoji: '🍫',
+            text: 'fueled by chocolate'
         },
         {
             emoji: '🌎',
@@ -77,7 +77,7 @@ export const Simon = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
@@ -135,7 +135,7 @@ export const Mael = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
@@ -193,7 +193,7 @@ export const Colin = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
@@ -251,7 +251,7 @@ export const Corentin = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
@@ -309,7 +309,7 @@ export const Alexis = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
@@ -367,7 +367,7 @@ export const Mohamed = {
         },
         {
             emoji: "💼",
-            text: "Systems Engineer at Google"
+            text: "Student at INSA Lyon"
         },
         {
             emoji: "📧",
