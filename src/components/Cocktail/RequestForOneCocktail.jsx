@@ -1,34 +1,58 @@
-import {useEffect} from "react";
-import React from "react";
+import React, {useState, useEffect} from "react";
+import CocktailCarousel from "../CocktailCarousel.jsx";
 import './RequestForOneCocktail.css'
 function RequestForOneCocktail(nameCocktail) {
+
+    const [cocktailsIngredients, setCocktailsIngredients] = useState([]);
+
     console.log("PARAMMMEETTERR");
     console.log(nameCocktail.nameCocktail);
     var cocktail = nameCocktail.nameCocktail;
-    var recherche = `PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX dc: <http://purl.org/dc/elements/1.1/>
-PREFIX : <http://dbpedia.org/resource/>
-PREFIX dbpedia2: <http://dbpedia.org/property/>
-PREFIX dbpedia: <http://dbpedia.org/>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-\n
-SELECT distinct ?name ?ingredients ?comments ?prep  ?served  ?thumbnail ?type WHERE {
-?cocktail dbp:type ?type; 
-dbp:name ?name; 
-dbp:ingredients ?ingredients; 
-rdfs:comment ?comments; 
-dbp:prep ?prep;
-dbp:served ?served;
-dbo:thumbnail ?thumbnail.
-Filter (langMatches(lang(?comments), "en"))
-Filter(?name = "`+cocktail+`"@en)
-}`;
+    var recherche = `PREFIX yago: <http://dbpedia.org/class/yago/>
+                     SELECT ?cocktail ?name ?thumbnail ?comments ?served ?ingredients ?prep ?nameSP ?nameSPSP ?thumbnailSP STRAFTER(?nameSP, "Cocktails with") AS ?nameIngredients WHERE {
+                     ?cocktail a yago:Cocktail107911677;
+                     dbp:name ?name;
+                     dbp:ingredients ?ingredients.
+                     OPTIONAL{
+                     ?cocktail
+                     rdfs:comment ?comments.
 
-    var varTest =1;
+                     Filter (langMatches(lang(?comments), "fr"))
+                     }
+                     OPTIONAL{
+                     ?cocktail
+                     dbp:prep ?prep.
+                     }
+
+                     OPTIONAL{
+                     ?cocktail
+                     dbp:served ?served.
+                     }
+
+                     OPTIONAL{
+                     ?cocktail
+                     dbo:thumbnail ?thumbnail.
+                     }
+
+                     OPTIONAL{
+                     ?cocktail
+                     dbo:wikiPageWikiLink ?liens.
+                     ?liens rdfs:label ?nameSP.
+                     FILTER regex(?nameSP, "Cocktails with", "i")
+                     Filter (langMatches(lang(?nameSP), "en"))
+                     }
+
+                     OPTIONAL{
+                     ?cocktail
+                     dbo:wikiPageWikiLink ?liens.
+                     ?liensSP
+                     dbo:wikiPageWikiLink  ?liens.
+                     ?liensSP dbp:name ?nameSPSP;
+                     dbo:thumbnail ?thumbnailSP.
+                     Filter(?nameSPSP != ?name)
+                     }
+                     Filter regex(?name, "`+cocktail+`")
+                     }`;
     const rechercher = () => {
         var contenu_requete = recherche;
 
@@ -256,13 +280,54 @@ Filter(?name = "`+cocktail+`"@en)
 
         // document.getElementById("resultatsOneCocktailTable").innerHTML = contenuTableau;
         document.getElementById("resultatOneCocktail").innerHTML = contenuCocktail;
+        var mapIngredients = new Map();
+        var arrayIngredients = new Array();
+
+        data.results.bindings.forEach(r => {
+            if(!mapIngredients.has(r.nameIngredients.value)){
+                mapIngredients.set(r.nameIngredients.value,new Array());
+                var temp = new Map();
+                temp.set("ingredient", r.nameIngredients.value);
+                arrayIngredients.push(temp);
+            }
+            arrayIngredients.forEach(t => {
+                if(t.get("ingredient")===r.nameIngredients.value){
+                    if(!t.has("cocktails")){
+                        t.set("cocktails", new Array());
+
+                    }
+                    var temp = new Map();
+                    temp.set("name",r.nameSPSP.value);
+                    temp.set("thumbnail",r.thumbnailSP.value);
+
+
+                    if(t.get("cocktails").filter(u => u.get("name")==r.nameSPSP.value).length==0 && temp.get("name")!=nameCocktail.nameCocktail){
+                        t.get("cocktails").push(temp);
+                    }
+                }
+            })
+            mapIngredients.get(r.nameIngredients.value).push(r.nameSPSP.value);
+        })
+        setCocktailsIngredients(arrayIngredients);
+
+
 
     }
 
-    rechercher();
+    useEffect(() => {
+   		rechercher();
+   	}, [])
     return (<>
         {/*<table id="resultatsOneCocktailTable"></table>*/}
         <div id="resultatOneCocktail"></div>
+
+            {cocktailsIngredients.map((ingredient, index) =>
+                <>
+                <h3> Cocktails contenant aussi l'ingrédient : {ingredient.get("ingredient")} </h3>
+				<CocktailCarousel key={index} cocktails={ingredient.get("cocktails")}  />
+				</>
+			)}
+{/*         <CocktailCarousel listeCocktails={liste}/> */}
     </>)
 }
 
