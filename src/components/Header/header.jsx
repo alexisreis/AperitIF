@@ -41,7 +41,7 @@ function Header() {
     <header className="header">
       <div className="header__content">
         <Link to="/" className="header__content__logo">
-          APERIT'IF
+          <p className="title">APERIT'IF</p>
           <p className="subtitle">Your reference for cocktails</p>
         </Link>
         <nav

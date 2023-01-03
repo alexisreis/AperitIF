@@ -8,9 +8,11 @@ function Home() {
   return (
     <>
       <Header />
-      <h1>'Bienvenue' as we say in French !</h1>
-        <SearchBar/>
-      <RequestExample/>
+        <div className="bodyPage">
+          <h1>'Bienvenue' as we say in French !</h1>
+            <SearchBar/>
+            <RequestExample/>
+        </div>
       <Footer/>
     </>
   );
