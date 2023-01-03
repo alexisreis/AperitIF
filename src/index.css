@@ -28,9 +28,9 @@ p {
 }
 
 :root {
-  --bg-primary: #d7ebf6;
-  --bg-secondary: #24035a;
-  --bg-terniary: #2d85a6;
+  --bg-primary: #fcfcfc;
+  --bg-secondary: #4d4d4d;
+  --bg-terniary: #0e0e0e;
   --text-primary: #222;
 }
 

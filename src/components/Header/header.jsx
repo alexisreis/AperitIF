@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./header.scss";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
 function Header() {
   const navigate = useNavigate();
@@ -33,11 +34,15 @@ function Header() {
     setMenuOpen((p) => !p);
   };
 
+  let location = useLocation();
+  let isHome = (location.pathname == '/');
+
   return (
     <header className="header">
       <div className="header__content">
         <Link to="/" className="header__content__logo">
-          Bonsoir c'est APERIT'IF
+          APERIT'IF
+          <p className="subtitle">Your reference for cocktails</p>
         </Link>
         <nav
           className={`${"header__content__nav"} 
@@ -46,14 +51,16 @@ function Header() {
         >
           <ul>
             <li>
-              <Link to="/">Accueil</Link>
+              {!isHome ? (
+                  <SearchBar/>
+              ) : (<div/>)}
             </li>
             <li>
-              <Link to="/about">À propos</Link>
+              <Link to="/">Home</Link>
             </li>
-            <Link to="/register">
-              <button className="btn">Register</button>
-            </Link>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
           </ul>
         </nav>
         <div className="header__content__toggle">
