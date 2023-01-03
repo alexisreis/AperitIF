@@ -18,23 +18,23 @@ PREFIX dbpedia2: <http://dbpedia.org/property/>
 PREFIX dbpedia: <http://dbpedia.org/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 \n
-SELECT distinct ?name ?comments ?thumbnail ?nameSP ?thumbnail2 WHERE {
+SELECT distinct ?name ?comments ?thumbnail ?nameSP ?thumbnail2  WHERE {
 ?cocktail dbp:type ?typeSP; 
 dbo:thumbnail ?thumbnail;
 rdfs:comment ?comments;
 dbp:name ?name.
-?cocktail
-dbo:wikiPageWikiLink ?liensSP.
-?liens dbp:type ?typeSousPageSP;
+OPTIONAL
+{
+?cocktail1 dbp:type "cocktail"@en;
 rdfs:comment ?comm;
 dbo:thumbnail ?thumbnail2;
-dbp:name ?nameSP.
+dbp:name ?nameSP;
+dbp:ingredients ?ingredients.
+Filter(regex(?ingredients,"`+alcool.toLowerCase()+`","i"))
+}
 Filter (langMatches(lang(?comm), "fr"))
 Filter (langMatches(lang(?comments), "fr"))
-Filter(?typeSP != "cocktail"@en && ?typeSP != "Cocktail"@en )
-Filter(?typeSousPageSP = "cocktail"@en)
 FILTER(?name="`+alcool+`"@en)
-
 }`;
     const rechercher = () => {
         var contenu_requete = requete;
@@ -104,16 +104,18 @@ FILTER(?name="`+alcool+`"@en)
         contenuAlcool += "<div id='suggestion'>"
         contenuAlcool += "<ul class='no-bullets'>";
         for(var i=0;i<data.results.bindings.length;i++){
-            contenuAlcool += "<li>";
-            contenuAlcool += "<a href='/cocktail/"+data.results.bindings[i].nameSP.value+"'>";
-            contenuAlcool += "<img id='image' src='";
-            contenuAlcool += data.results.bindings[i].thumbnail2.value;
-            contenuAlcool += "'/>'";
-            contenuAlcool += "<span style='margin-left: 10px'>"
-            contenuAlcool += data.results.bindings[i].nameSP.value;
-            contenuAlcool += "</span>"
-            contenuAlcool += "</a>";
-            contenuAlcool += "</li>";
+            if (data.results.bindings[i].thumbnail2 != undefined && data.results.bindings[i].nameSP != undefined) {
+                contenuAlcool += "<li>";
+                contenuAlcool += "<a href='/cocktail/" + data.results.bindings[i].nameSP.value + "'>";
+                contenuAlcool += "<img id='image' src='";
+                contenuAlcool += data.results.bindings[i].thumbnail2.value;
+                contenuAlcool += "'/>'";
+                contenuAlcool += "<span style='margin-left: 10px'>"
+                contenuAlcool += data.results.bindings[i].nameSP.value;
+                contenuAlcool += "</span>"
+                contenuAlcool += "</a>";
+                contenuAlcool += "</li>";
+            }
         }
         contenuAlcool += "</ul>";
         contenuAlcool += "</div>";

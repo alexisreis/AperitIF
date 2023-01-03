@@ -31,6 +31,7 @@ export default function App() {
                           dbp:prep ?prep;
                           dbp:served ?served;
                           dbo:thumbnail ?thumbnail.
+                          Filter(?type = "cocktail"@en)
                           Filter (langMatches(lang(?comments), "fr"))
                           }`;
 		var requeteAlcool=`PREFIX owl: <http://www.w3.org/2002/07/owl#>

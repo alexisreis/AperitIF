@@ -10,7 +10,7 @@ function RequestForOneCocktail(nameCocktail) {
     var cocktail = nameCocktail.nameCocktail;
     var recherche = `PREFIX yago: <http://dbpedia.org/class/yago/>
                      SELECT ?cocktail ?name ?thumbnail ?comments ?served ?ingredients ?prep ?nameSP ?nameSPSP ?thumbnailSP STRAFTER(?nameSP, "Cocktails with") AS ?nameIngredients WHERE {
-                     ?cocktail a yago:Cocktail107911677;
+                     ?cocktail dbp:type ?type;
                      dbp:name ?name;
                      dbp:ingredients ?ingredients.
                      OPTIONAL{
