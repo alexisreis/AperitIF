@@ -8,9 +8,10 @@ function RequestExample() {
 	const {cocktails} = useContext(CocktailContext);
 
 	return (<div id="requestExample">
-		<h2>We propose you :</h2>
+		<h2>May we propose a cocktail :</h2>
 		<div id="cardsTableau">
-			{cocktails.map((card, index) =>
+			{cocktails.sort((c1, c2) => c1.name + c2.name)
+				.map((card, index) =>
 				<CocktailCard key={index} name={card.name} img={card.img} />
 			)}
         </div>

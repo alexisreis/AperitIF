@@ -20,7 +20,7 @@ const SearchBar = () => {
 					</svg>
 					<div id="searchbar-text-div">
 						<input type="text"
-						       placeholder="Look up a cocktail..."
+						       placeholder="Look up a cocktail or an alcohol"
 						       role="combobox" aria-expanded="false"
 						       aria-controls="298dc1ea-4e6b-43de-85b6-a533bb79cfe2-results"
 						       id="searchbar-label"
@@ -35,7 +35,7 @@ const SearchBar = () => {
 					subtitle: "Look up for your best beverage",
 					noResults: {title: "No cocktail found :'(", subtitle: "Sorry, you're gonna be thirsty"}
 				}}
-				label="Look up a cocktail..."
+				label="Look up a cocktail or an alcohol"
 				dark={false}
 				open={open}
 				algo={"combo"}
@@ -46,7 +46,7 @@ const SearchBar = () => {
 				{cocktails.map((cocktail) => (
 					<Option
 						label={cocktail.name}
-						sublabel={cocktail.name}
+						sublabel={"Cocktail"}
 						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
 						href={`/cocktail/${cocktail.name}`}
 						keywords={(getKeywords) =>
@@ -60,18 +60,18 @@ const SearchBar = () => {
 				))}
 
 
-				{alcools.map((cocktail) => (
+				{alcools.map((alcohol) => (
 					<Option
-						label={"INGREDIENT - "+cocktail.name}
-						sublabel={cocktail.name}
-						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
-						href={`/alcool/${cocktail.name}`}
+						label={alcohol.name}
+						sublabel={"Alcohol"}
+						img={{ src: alcohol.img, alt: `${alcohol.name} profile picture` }}
+						href={`/alcool/${alcohol.name}`}
 						keywords={(getKeywords) =>
 							getKeywords(
-								cocktail.name,
+								alcohol.name,
 							)
 						}
-						key={cocktail.name}
+						key={alcohol.name}
 					>
 					</Option>
 				))}
