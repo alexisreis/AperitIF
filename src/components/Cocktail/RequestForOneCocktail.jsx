@@ -196,6 +196,16 @@ function RequestForOneCocktail(nameCocktail) {
             "if(parseFloat(document.getElementById('numberPersons').textContent)!=1&&8<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[8].textContent=(parseFloat(document.getElementsByClassName('ab')[8].textContent))*(parseFloat(document.getElementById('numberPersons').textContent)-1)/(parseFloat(document.getElementById('numberPersons').textContent));" +
             "if(parseFloat(document.getElementById('numberPersons').textContent)!=1&&9<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[9].textContent=(parseFloat(document.getElementsByClassName('ab')[9].textContent))*(parseFloat(document.getElementById('numberPersons').textContent)-1)/(parseFloat(document.getElementById('numberPersons').textContent));" +
             "if(parseFloat(document.getElementById('numberPersons').textContent)!=1)document.getElementById('numberPersons').textContent=parseFloat(document.getElementById('numberPersons').textContent)-1;" +
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[0].textContent)))document.getElementsByClassName('ab')[0].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[1].textContent)))document.getElementsByClassName('ab')[1].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[2].textContent)))document.getElementsByClassName('ab')[2].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[3].textContent)))document.getElementsByClassName('ab')[3].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[4].textContent)))document.getElementsByClassName('ab')[4].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[5].textContent)))document.getElementsByClassName('ab')[5].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[6].textContent)))document.getElementsByClassName('ab')[6].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[7].textContent)))document.getElementsByClassName('ab')[7].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[8].textContent)))document.getElementsByClassName('ab')[8].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[9].textContent)))document.getElementsByClassName('ab')[9].textContent='';"+
             "} " +
             "class='numberPersonsPlusMoins'>-</button>"
         contenuCocktail += "<p class='textNumberPersons'>For</p>";
@@ -211,7 +221,18 @@ function RequestForOneCocktail(nameCocktail) {
             "if(6<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[6].textContent=(parseFloat(document.getElementsByClassName('ab')[6].textContent))*parseFloat(document.getElementById('numberPersons').textContent)/(parseFloat(document.getElementById('numberPersons').textContent)-1);" +
             "if(7<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[7].textContent=(parseFloat(document.getElementsByClassName('ab')[7].textContent))*parseFloat(document.getElementById('numberPersons').textContent)/(parseFloat(document.getElementById('numberPersons').textContent)-1);" +
             "if(8<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[8].textContent=(parseFloat(document.getElementsByClassName('ab')[8].textContent))*parseFloat(document.getElementById('numberPersons').textContent)/(parseFloat(document.getElementById('numberPersons').textContent)-1);" +
-            "if(9<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[9].textContent=(parseFloat(document.getElementsByClassName('ab')[9].textContent))*parseFloat(document.getElementById('numberPersons').textContent)/(parseFloat(document.getElementById('numberPersons').textContent)-1);}" +
+            "if(9<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[9].textContent=(parseFloat(document.getElementsByClassName('ab')[9].textContent))*parseFloat(document.getElementById('numberPersons').textContent)/(parseFloat(document.getElementById('numberPersons').textContent)-1);"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[0].textContent)))document.getElementsByClassName('ab')[0].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[1].textContent)))document.getElementsByClassName('ab')[1].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[2].textContent)))document.getElementsByClassName('ab')[2].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[3].textContent)))document.getElementsByClassName('ab')[3].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[4].textContent)))document.getElementsByClassName('ab')[4].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[5].textContent)))document.getElementsByClassName('ab')[5].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[6].textContent)))document.getElementsByClassName('ab')[6].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[7].textContent)))document.getElementsByClassName('ab')[7].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[8].textContent)))document.getElementsByClassName('ab')[8].textContent='';"+
+            "if(Number.isNaN(parseFloat(document.getElementsByClassName('ab')[9].textContent)))document.getElementsByClassName('ab')[9].textContent='';"+
+            "}" +
             ">+</button>"
         contenuCocktail += "</div>";
         contenuCocktail += "<IngreUnique />";
