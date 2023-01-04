@@ -8,7 +8,7 @@ import {CocktailContext} from "./context/CocktailContext.js";
 import Home from "./pages/Home/home.jsx";
 import NotFound from "./pages/NotFound/notfound.jsx";
 import About from "./pages/About/about.jsx";
-import {Option} from "searchpal";
+
 
 export default function App() {
 
@@ -32,9 +32,10 @@ export default function App() {
                           dbp:served ?served;
                           dbo:thumbnail ?thumbnail.
                           Filter(?type = "cocktail"@en)
-                          Filter (langMatches(lang(?comments), "fr"))
-                          }`;
-		var requeteAlcool=`PREFIX owl: <http://www.w3.org/2002/07/owl#>
+                          Filter (langMatches(lang(?comments), "en"))
+                          } ORDER BY ASC ($name)`;
+
+	var requeteAlcool=`PREFIX owl: <http://www.w3.org/2002/07/owl#>
 		                  PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 		                  PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 		                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -50,11 +51,11 @@ export default function App() {
 dbp:name ?name;
 rdfs:comment ?comment;
 dbo:thumbnail ?thumbnail.
-Filter (langMatches(lang(?comment), "fr"))
+Filter (langMatches(lang(?comment), "en"))
 
 
 Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@en || ?type ="Rum"@en || ?type=dbr:Liqueur || ?type = dbr:American_whiskey || ?type = dbr:Cream_liqueur || ?type=dbr:Bourbon_whiskey || ?type= dbr:Gin || ?type= "Gin"@en || ?type = dbr:Aperitif  || ?type = "champagne"@en || ?type = "vodka"@en || ?type = dbr:Gin || ?type="Vodka"@en || ?type = dbr:Tequila || ?type = dbr:Bitters || ?type = "Spirit"@en || ?type="Liquor"@en || ?type= dbr:Coffee_liqueur || ?type = "Triple sec liqueur"@en || ?type  = "pastis"@en || ?type = "Slushy"@en || ?type="beer"@en || ?type = "wine"@en || ?type="Syrup"@en)
-}`;
+} ORDER BY ASC($name)`;
 
 	const [cocktails, setCocktails] = useState([]);
 	const [alcools,setAlcools]=useState([]);

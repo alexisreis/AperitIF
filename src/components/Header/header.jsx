@@ -4,6 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import "./header.scss";
 import SearchBar from "../SearchBar/SearchBar.jsx";
+import cocktail from "../../assets/cocktails.png"
 
 function Header() {
   const navigate = useNavigate();
@@ -40,10 +41,14 @@ function Header() {
   return (
     <header className="header">
       <div className="header__content">
-        <Link to="/" className="header__content__logo">
-          <p className="title">APERIT'IF</p>
-          <p className="subtitle">Your reference for cocktails</p>
-        </Link>
+        <div id={"header_title"}>
+          <img src={cocktail} id={"logo"}/>
+          <Link to="/" className="header__content__logo">
+            <p className="title">APERIT'IF</p>
+            <p className="subtitle">Your reference for cocktails</p>
+          </Link>
+        </div>
+
         <nav
           className={`${"header__content__nav"} 
           ${menuOpen && size.width < 768 ? `${"isMenu"}` : ""} 
