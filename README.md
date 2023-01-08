@@ -10,8 +10,17 @@
 - Colin THOMAS
 - Eva UGNON-COUSSIOZ
 
-## Déploiement du moteur de recherche
-1. Il faut un Node.js d'installé
-2. commande 'npm install' pour installer les librairies utilisés dans notre moteur de recherche
-3. commande 'npm run dev'
+## Installation du projet
+Cette application web, codée en React nécessite un environnement NodeJS pour fonctionner en mode local.
+Installer NodeJS : https://nodejs.org/en/download/
 
+### Installation des librairies
+Lors du premier lancement de notre application, certaines librairies doivent être téléchargées (React, ...)
+```bash
+npm install
+```
+
+### Lancement du serveur local
+```bash
+npm run dev
+```
