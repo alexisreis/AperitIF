@@ -111,7 +111,7 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 
 	return (
 		<CocktailContext.Provider value={cocktailProvider}>
-			<BrowserRouter>
+			<BrowserRouter basename={import.meta.env.DEV ? '/' : '/aperitif/'}>
 				<Routes>
 					<Route path="about" element={<About/>}/>
 					<Route path="/" element={<Home/>}/>
