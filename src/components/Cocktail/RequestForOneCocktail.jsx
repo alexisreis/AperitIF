@@ -8,7 +8,7 @@ function RequestForOneCocktail(nameCocktail) {
     console.log("PARAMMMEETTERR");
     console.log(nameCocktail.nameCocktail);
     var cocktail = nameCocktail.nameCocktail;
-    var recherche = `PREFIX yago: <http://dbpedia.org/class/yago/>
+    var recherche = `PREFIX yago: <https://dbpedia.org/class/yago/>
                      SELECT ?cocktail ?name ?thumbnail ?comments ?served ?ingredients ?prep ?nameSP ?nameSPSP ?thumbnailSP STRAFTER(?nameSP, "Cocktails with") AS ?nameIngredients WHERE {
                      ?cocktail dbp:type ?type;
                      dbp:name ?name;
@@ -57,7 +57,7 @@ function RequestForOneCocktail(nameCocktail) {
         var contenu_requete = recherche;
 
         // Encodage de l'URL à transmettre à DBPedia
-        var url_base = "http://dbpedia.org/sparql";
+        var url_base = "https://dbpedia.org/sparql";
         var url = url_base + "?query=" + encodeURIComponent(contenu_requete) + "&format=json";
 
         // Requête HTTP et affichage des résultats

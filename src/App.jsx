@@ -18,9 +18,9 @@ export default function App() {
 		                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		                  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 		                  PREFIX dc: <http://purl.org/dc/elements/1.1/>
-		                  PREFIX : <http://dbpedia.org/resource/>
-		                  PREFIX dbpedia2: <http://dbpedia.org/property/>
-		                  PREFIX dbpedia: <http://dbpedia.org/>
+		                  PREFIX : <https://dbpedia.org/resource/>
+		                  PREFIX dbpedia2: <https://dbpedia.org/property/>
+		                  PREFIX dbpedia: <https://dbpedia.org/>
 		                  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 		                  \n
                           SELECT distinct ?thumbnail ?name WHERE {
@@ -41,9 +41,9 @@ export default function App() {
 		                  PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 		                  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 		                  PREFIX dc: <http://purl.org/dc/elements/1.1/>
-		                  PREFIX : <http://dbpedia.org/resource/>
-		                  PREFIX dbpedia2: <http://dbpedia.org/property/>
-		                  PREFIX dbpedia: <http://dbpedia.org/>
+		                  PREFIX : <https://dbpedia.org/resource/>
+		                  PREFIX dbpedia2: <https://dbpedia.org/property/>
+		                  PREFIX dbpedia: <https://dbpedia.org/>
 		                  PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 		                  \n
 		                  SELECT distinct ?name ?thumbnail WHERE {
@@ -70,9 +70,9 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 		var contenu_requete = requete;
 		var contenu_requete2 = requeteAlcool;
 		// Encodage de l'URL à transmettre à DBPedia
-		var url = "http://dbpedia.org/sparql?query="
+		var url = "https://dbpedia.org/sparql?query="
 			+ encodeURIComponent(contenu_requete) + "&format=json";
-		var url2= "http://dbpedia.org/sparql?query="
+		var url2= "https://dbpedia.org/sparql?query="
 			+ encodeURIComponent(contenu_requete2) + "&format=json";
 		fetch(url, {method: 'GET'})
 			.then(response => response.json())
