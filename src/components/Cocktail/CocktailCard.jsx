@@ -1,5 +1,5 @@
 import React from 'react';
-import defaultCocktail from "../img/cocktail.jpg";
+import defaultCocktail from "../../assets/default_cocktail.jpg";
 import './CocktailCard.css'
 import {useNavigate} from "react-router-dom";
 

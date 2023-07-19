@@ -1,9 +1,9 @@
 import React, {useContext} from "react";
 import CocktailCard from "./CocktailCard.jsx";
-import './RequestExample.css'
-import {CocktailContext} from "../context/CocktailContext.js";
+import './CocktailList.css'
+import {CocktailContext} from "../../context/CocktailContext.js";
 
-function RequestExample() {
+function CocktailList() {
 
 	const {cocktails} = useContext(CocktailContext);
 
@@ -18,4 +18,4 @@ function RequestExample() {
 	</div>)
 }
 
-export default RequestExample;
+export default CocktailList;
