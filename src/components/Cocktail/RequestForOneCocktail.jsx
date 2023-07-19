@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
-import CocktailCarousel from "../CocktailCarousel.jsx";
+import CocktailCarousel from "./CocktailCarousel.jsx";
 import './RequestForOneCocktail.css'
 function RequestForOneCocktail(nameCocktail) {
 
     const [cocktailsIngredients, setCocktailsIngredients] = useState([]);
 
-    console.log("PARAMMMEETTERR");
     console.log(nameCocktail.nameCocktail);
     var cocktail = nameCocktail.nameCocktail;
     var recherche = `PREFIX yago: <https://dbpedia.org/class/yago/>

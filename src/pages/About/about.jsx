@@ -7,10 +7,7 @@ import "./about.scss";
 function about() {
   return (
     <>
-      <Header />
       <h1>About</h1>
-        {/*<h2>Projet réalisé par 7 étudiants de 4ème année du département informatique de l'INSA de Lyon dans le cadre d'un mini-projet de cours.</h2>*/}
-        {/*<h2>Membres de l'équipe :</h2>*/}
         <h2>Project created by 7 students in their last to final year of engineering studies in Computer Science at
             <a className="linkTo" href={"https://www.insa-lyon.fr/"}> INSA Lyon</a>.
             This was a mini-project due for syllabus using open data from
@@ -47,8 +44,6 @@ function about() {
                 <Member name="Eva"/>
             </div>
         </div>
-
-      <Footer/>
     </>
   );
 }
