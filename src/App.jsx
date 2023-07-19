@@ -82,6 +82,7 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 			.then(response => response.json())
 			.then((data) => {
 				if(data.results.bindings.length){
+					let jsonCocktails = [];
 					data.results.bindings.forEach(cocktail => {
 						jsonCocktails.push({name: cocktail.name.value, img:cocktail.thumbnail.value});
 					});
@@ -93,6 +94,7 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 			.then(response => response.json())
 			.then((data) => {
 				if(data.results.bindings.length){
+					let jsonAlcools = [];
 					data.results.bindings.forEach(cocktail => {
 						jsonAlcools.push({name: cocktail.name.value,img: cocktail.thumbnail.value});
 					});
@@ -100,14 +102,6 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 				}
 			});
 	}, []);
-
-	const afficherResultats2 = (data) => {
-		var jsonAlcools = [];
-		data.forEach(cocktail => {
-			jsonAlcools.push({name: cocktail.name.value,img: cocktail.thumbnail.value});
-		});
-		setAlcools(jsonAlcools);
-		}
 
 	return (
 		<CocktailContext.Provider value={cocktailProvider}>
