@@ -1,12 +1,17 @@
 import React from 'react';
 import defaultCocktail from "../img/cocktail.jpg";
 import './CocktailCard.css'
+import {useNavigate} from "react-router-dom";
 
 function CocktailCard({name, img}) {
+	const navigate = useNavigate();
+	const navigateToCocktail = () => {
+		navigate("/cocktail/" + name);
+	}
 
 	return (
 		<div id="divCard">
-			<a href={"/cocktail/" + name}>
+			<a onClick={navigateToCocktail}>
 				<img src={img ? img : defaultCocktail}
 				     onError={(e) =>
 					     (e.target.onerror = null)(

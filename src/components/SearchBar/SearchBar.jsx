@@ -2,11 +2,23 @@ import { Search, Option, Detail } from "searchpal";
 import React, {useState, useContext} from "react";
 import "./SearchBar.scss"
 import {CocktailContext} from "../../context/CocktailContext.js";
+import {useNavigate} from "react-router-dom";
 
 const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
-	const {cocktails,alcools} = useContext(CocktailContext);
+	const {cocktails, alcools} = useContext(CocktailContext);
+
+	const navigate = useNavigate();
+
+
+	const navigateToCocktail = (name) => {
+		navigate(`/cocktail/${name}`);
+	}
+
+	const navigateToAlcool = (name) => {
+		navigate(`/alcool/${name}`);
+	}
 
 	return (
 		<>
@@ -48,7 +60,8 @@ const SearchBar = () => {
 						label={cocktail.name}
 						sublabel={"Cocktail"}
 						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
-						href={`/cocktail/${cocktail.name}`}
+						// href={`/cocktail/${cocktail.name}`}
+						onClick={() => navigateToCocktail(cocktail.name)}
 						keywords={(getKeywords) =>
 							getKeywords(
 								cocktail.name,
@@ -65,7 +78,8 @@ const SearchBar = () => {
 						label={alcohol.name}
 						sublabel={"Alcohol"}
 						img={{ src: alcohol.img, alt: `${alcohol.name} profile picture` }}
-						href={`/alcool/${alcohol.name}`}
+						// href={`/alcool/${alcohol.name}`}
+						onClick={() => navigateToAlcool(alcohol.name)}
 						keywords={(getKeywords) =>
 							getKeywords(
 								alcohol.name,
