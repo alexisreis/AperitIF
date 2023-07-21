@@ -12,7 +12,9 @@
 #divCard:hover {
     grid-template-rows: 210px 0px;
     box-shadow: 0 16px 16px 0 rgba(0,0,0,0.6);
-}#divCard img{
+}
+
+#divCard img{
      background-color:darkGrey;
      margin:0px;
      grid-row:1;
@@ -22,11 +24,11 @@
      border-radius:10px;
 
     transition: 0.3s;
- }
+}
+
 #divCard:hover img{
     height:210px;
 }
-
 
 #divCard div p{
     overflow:hidden;
@@ -35,17 +37,18 @@
     color:black;
     transition:0.3s;
 }
+
 #divCard:hover div p{
     color: rgba(0, 0, 0, 0);
 
 }
+
 #divCard div{
     margin:0px;
     grid-row:2;
     text-overflow:ellipsis;
     height:4vw;
 }
-
 
 @media screen and (max-width: 500px) {
   #divCard img{

@@ -7,7 +7,9 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import cocktail from "../../assets/cocktails.png"
 
 function Header() {
+
   const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [size, setSize] = useState({
     width: 0,

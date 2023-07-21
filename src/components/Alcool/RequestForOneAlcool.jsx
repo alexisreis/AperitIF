@@ -3,8 +3,6 @@ import React from "react";
 import './RequestForOneAlcool.css'
 
 function RequestForOneAlcool(nameAlcool) {
-    console.log("********");
-    console.log(nameAlcool.nameAlcool);
     var alcool = nameAlcool.nameAlcool;
     var requete = `
     PREFIX owl: <http://www.w3.org/2002/07/owl#>

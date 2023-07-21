@@ -1,13 +1,15 @@
-import './App.css'
 import React, {useMemo, useState, useEffect} from "react";
-import Cocktail from "./pages/Cocktail/Cocktail.jsx";
-import Alcool from "./pages/Alcool/Alcool.jsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {CocktailContext} from "./context/CocktailContext.js";
 
+import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home/home.jsx";
 import NotFound from "./pages/NotFound/notfound.jsx";
 import About from "./pages/About/about.jsx";
+import Cocktail from "./pages/Cocktail/Cocktail.jsx";
+import Alcool from "./pages/Alcool/Alcool.jsx";
+import {CocktailContext} from "./context/CocktailContext.js";
+
+import './App.css'
 
 
 export default function App() {
@@ -59,6 +61,7 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 
 	const [cocktails, setCocktails] = useState([]);
 	const [alcools,setAlcools]=useState([]);
+
 	const cocktailProvider = useMemo(() => ({
 		cocktails,
 		setCocktails,
@@ -74,50 +77,43 @@ Filter(?type = dbr:Liquor || ?type = dbr:Brandy  || ?type= "Alcoholic beverage"@
 			+ encodeURIComponent(contenu_requete) + "&format=json";
 		var url2= "https://dbpedia.org/sparql?query="
 			+ encodeURIComponent(contenu_requete2) + "&format=json";
+
 		fetch(url, {method: 'GET'})
 			.then(response => response.json())
 			.then((data) => {
 				if(data.results.bindings.length){
-					afficherResultats(data.results.bindings);
+					let jsonCocktails = [];
+					data.results.bindings.forEach(cocktail => {
+						jsonCocktails.push({name: cocktail.name.value, img:cocktail.thumbnail.value});
+					});
+					setCocktails(jsonCocktails);
 				}
 			});
+
 		fetch(url2, {method: 'GET'})
 			.then(response => response.json())
 			.then((data) => {
 				if(data.results.bindings.length){
-					afficherResultats2(data.results.bindings);
+					let jsonAlcools = [];
+					data.results.bindings.forEach(cocktail => {
+						jsonAlcools.push({name: cocktail.name.value,img: cocktail.thumbnail.value});
+					});
+					setAlcools(jsonAlcools);
 				}
 			});
 	}, []);
-
-	// Affichage des résultats dans un tableau
-	const afficherResultats = (data) => {
-		var jsonCocktails = [];
-		data.forEach(cocktail => {
-			jsonCocktails.push({name: cocktail.name.value, img:cocktail.thumbnail.value});
-		});
-		setCocktails(jsonCocktails);
-	}
-
-	const afficherResultats2 = (data) => {
-		var jsonAlcools = [];
-		data.forEach(cocktail => {
-				jsonAlcools.push({name: cocktail.name.value,img: cocktail.thumbnail.value});
-
-
-		});
-		setAlcools(jsonAlcools);
-		}
 
 	return (
 		<CocktailContext.Provider value={cocktailProvider}>
 			<BrowserRouter basename={import.meta.env.DEV ? '/' : '/AperitIF/'}>
 				<Routes>
-					<Route path="about" element={<About/>}/>
-					<Route path="/" element={<Home/>}/>
-					<Route path="*" element={<NotFound/>}/>
-					<Route path="/cocktail/:nameCocktail" element={<Cocktail/>}/>
-					<Route path="/alcool/:nameAlcool" element={<Alcool/>}/>
+					<Route element={<Layout />}>
+						<Route path="/" element={<Home/>}/>
+						<Route path="about" element={<About/>}/>
+						<Route path="/cocktail/:nameCocktail" element={<Cocktail/>}/>
+						<Route path="/alcool/:nameAlcool" element={<Alcool/>}/>
+						<Route path="*" element={<NotFound/>}/>
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</CocktailContext.Provider>
