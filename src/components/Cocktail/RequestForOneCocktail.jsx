@@ -206,6 +206,7 @@ function RequestForOneCocktail({nameCocktail}) {
 
     useEffect(() => {
    		rechercher();
+        setNumberOfDrinks(1);
    	}, [nameCocktail]);
 
     return (<>
@@ -227,7 +228,7 @@ function RequestForOneCocktail({nameCocktail}) {
                         {cocktail.ingredients_names.length > 0 &&
                             cocktail.ingredients_names.map((ingredient, index) =>
                                 <div className='eachIngredient'>
-                                    ➡️  {cocktail.ingredients_quantities[index] !== " " && <label className='ab'>{cocktail.ingredients_quantities[index]}</label>}
+                                    ➡️  {!isNaN(cocktail.ingredients_quantities[index]) && <label className='ab'>{cocktail.ingredients_quantities[index]} </label>}
                                     {ingredient}
                                 </div>
                             )
