@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from "react";
 import CocktailCarousel from "./CocktailCarousel.jsx";
 import './RequestForOneCocktail.css'
-function RequestForOneCocktail(nameCocktail) {
+function RequestForOneCocktail({nameCocktail}) {
 
     const [cocktailsIngredients, setCocktailsIngredients] = useState([]);
 
-    console.log(nameCocktail.nameCocktail);
-    var cocktail = nameCocktail.nameCocktail;
     var recherche = `PREFIX yago: <https://dbpedia.org/class/yago/>
                      SELECT ?cocktail ?name ?thumbnail ?comments ?served ?ingredients ?prep ?nameSP ?nameSPSP ?thumbnailSP STRAFTER(?nameSP, "Cocktails with") AS ?nameIngredients WHERE {
                      ?cocktail dbp:type ?type;
@@ -50,57 +48,35 @@ function RequestForOneCocktail(nameCocktail) {
                      dbo:thumbnail ?thumbnailSP.
                      Filter(?nameSPSP != ?name)
                      }
-                     Filter regex(?name, "`+cocktail+`")
+                     Filter regex(?name, "`+nameCocktail+`")
                      }`;
-    const rechercher = () => {
-        var contenu_requete = recherche;
+    const rechercher = async () => {
+        var url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(recherche) + "&format=json";
 
-        // Encodage de l'URL à transmettre à DBPedia
-        var url_base = "https://dbpedia.org/sparql";
-        var url = url_base + "?query=" + encodeURIComponent(contenu_requete) + "&format=json";
-
-        // Requête HTTP et affichage des résultats
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var results = JSON.parse(this.responseText);
-                console.log(results)
-                afficherResultats(results);
-            }
-        };
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
+        try {
+            const repsonse = await fetch(url);
+            const data = await repsonse.json();
+            afficherResultats(data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Affichage des résultats dans un tableau
     const afficherResultats = (data) => {
-        // Tableau pour mémoriser l'ordre des variables ; sans doute pas nécessaire
-        // pour vos applications, c'est juste pour la démo sous forme de tableau
+
         var index = [];
-        var varTest =1;
-        var Ctitle; // ok
-        var Cimg; // ok
-        var Cingredients; // ok
-        var Ccomment; // ok
-        var Cserved;
+        var Ctitle = data.results.bindings[0].name.value;
+        var Cimg = data.results.bindings[0].thumbnail.value;
+        var Cingredients = data.results.bindings[0].ingredients.value;
+        var Ccomment = data.results.bindings[0].comments.value;
+        var Cserved = data.results.bindings[0].served.value;
         var TabIngredients = [];
         var Quantity = [];
-        console.log("DATA");
-        console.log(data.results.bindings[0]);
-        // title
-        Ctitle = data.results.bindings[0].name.value;
-        console.log("Title: ");
-        console.log(data.results.bindings[0].name.value);
 
-        // ingredients
-        Cingredients = data.results.bindings[0].ingredients.value;
-        console.log("Ingredients: ");
-        console.log(Cingredients);
-
-        // console.log(Cingredients.contains('*'));
         var myIndex = Cingredients.toString().indexOf('*', 0);
         var i= 0;
-        console.log("************************************************")
+
         while (myIndex != -1){
             const pastIndex = myIndex;
             myIndex = Cingredients.toString().indexOf('*', myIndex+1);
@@ -149,31 +125,14 @@ function RequestForOneCocktail(nameCocktail) {
             }
             i= i+1;
         }
-        console.log("Quantityyyy");
-        console.log(Quantity)
-        console.log("TabIngredientssss");
-        console.log(TabIngredients);
-        // comment
-        Ccomment = data.results.bindings[0].comments.value;
-        console.log("Comment: ");
-        console.log(data.results.bindings[0].comments.value);
 
-        // image
-        Cimg = data.results.bindings[0].thumbnail.value;
-        console.log("Image: ");
-        console.log(data.results.bindings[0].thumbnail.value);
+        // console.log("Quantityyyy");
+        // console.log(Quantity)
+        // console.log("TabIngredientssss");
+        // console.log(TabIngredients);
 
-        // served
-        Cserved = data.results.bindings[0].served.value;
-        console.log("Served: ");
-        console.log(data.results.bindings[0].served.value);
 
         var contenuCocktail = "<h1 id='h1cocktail'>";
-        contenuCocktail += "<script>";
-        contenuCocktail += "function augmenter(){";
-        contenuCocktail += "console.log('testtt');";
-        contenuCocktail += "}";
-        contenuCocktail += "</script>";
         contenuCocktail += Ctitle;
         contenuCocktail += "</h1>";
         contenuCocktail += "<div class='align'>";
@@ -182,7 +141,7 @@ function RequestForOneCocktail(nameCocktail) {
         contenuCocktail += Ccomment;
         contenuCocktail += "</p>";
         contenuCocktail += "<div id='ingredients'>";
-        contenuCocktail += "<div class='align'>"; //parseFloat(document.getElementById('numberPersons').textContent)
+        contenuCocktail += "<div class='align'>";
         contenuCocktail += "<button onClick={" +
             "if(parseFloat(document.getElementById('numberPersons').textContent)!=1&&0<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[0].textContent=(parseFloat(document.getElementsByClassName('ab')[0].textContent))*(parseFloat(document.getElementById('numberPersons').textContent)-1)/(parseFloat(document.getElementById('numberPersons').textContent));" +
             "if(parseFloat(document.getElementById('numberPersons').textContent)!=1&&1<document.getElementsByClassName('ab').length)document.getElementsByClassName('ab')[1].textContent=(parseFloat(document.getElementsByClassName('ab')[1].textContent))*(parseFloat(document.getElementById('numberPersons').textContent)-1)/(parseFloat(document.getElementById('numberPersons').textContent));" +
@@ -331,13 +290,12 @@ function RequestForOneCocktail(nameCocktail) {
         })
         setCocktailsIngredients(arrayIngredients);
 
-
-
     }
 
     useEffect(() => {
    		rechercher();
-   	}, [])
+   	}, [nameCocktail]);
+
     return (<>
         {/*<table id="resultatsOneCocktailTable"></table>*/}
         <div id="resultatOneCocktail"></div>
