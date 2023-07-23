@@ -1,7 +1,49 @@
 @import "./variable";
 
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: $white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 200ms ease;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  }
+
+  @media only screen and (min-width: 940px) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem;
+  }
+}
+
+.member-profile-picture {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+    background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+
+    @media only screen and (min-width: 940px) {
+        margin-right: 2rem;
+    }
+}
+
 h1 {
   text-align: center;
+
   @media only screen and (min-width: 940px) {
     text-align: left;
   }
@@ -9,19 +51,12 @@ h1 {
 
 h2 {
   text-align: center;
+
   @media only screen and (min-width: 940px) {
     text-align: left;
   }
 }
 
-
-.hand {
-  animation-name: wave;
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-}
 
 a {
   color: $dark;
@@ -31,6 +66,14 @@ a {
 a:hover {
   color: $lightgray;
   transition: color 200ms ease;
+}
+
+.hand {
+  animation-name: wave;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
 }
 
 @keyframes wave {

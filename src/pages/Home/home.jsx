@@ -10,6 +10,7 @@ function Home() {
                 <h1>Santé !</h1>
                 <h2>as we say in France</h2>
             </div>
+
             <SearchBar/>
 
             <h2>May we propose a cocktail :</h2>
