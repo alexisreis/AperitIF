@@ -2,15 +2,15 @@ import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 import Layout from "./components/Layout.jsx";
-import Home from "./pages/Home/Home.jsx";
-import NotFound from "./pages/NotFound/notfound.jsx";
-import About from "./pages/About/AboutPage.jsx";
-import Cocktail from "./pages/Cocktail/Cocktail.jsx";
-import Alcool from "./pages/Alcool/Alcool.jsx";
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.jsx";
+import AboutPage from "./pages/AboutPage/AboutPage.jsx";
+import CocktailPage from "./pages/CocktailPage/CocktailPage.jsx";
+import AlcoholPage from "./pages/AlcoolPage/AlcoholPage.jsx";
 import {CocktailProvider} from "./context/CocktailContext.jsx";
 
 
-import './App.css'
+import './App.scss'
 
 
 export default function App() {
@@ -20,11 +20,11 @@ export default function App() {
 			<BrowserRouter basename={import.meta.env.DEV ? '/' : '/AperitIF/'}>
 				<Routes>
 					<Route element={<Layout />}>
-						<Route path="/" element={<Home/>}/>
-						<Route path="/about" element={<About/>}/>
-						<Route path="/cocktail/:nameCocktail" element={<Cocktail/>}/>
-						<Route path="/alcool/:nameAlcool" element={<Alcool/>}/>
-						<Route path="*" element={<NotFound/>}/>
+						<Route path="/" element={<HomePage/>}/>
+						<Route path="/about" element={<AboutPage/>}/>
+						<Route path="/cocktail/:nameCocktail" element={<CocktailPage/>}/>
+						<Route path="/alcool/:nameAlcool" element={<AlcoholPage/>}/>
+						<Route path="*" element={<NotFoundPage/>}/>
 					</Route>
 				</Routes>
 			</BrowserRouter>

@@ -1,9 +1,11 @@
 import React from "react";
+
 import Member from "../../components/Member/member.jsx";
 
-import "./about.scss";
+import "./AboutPage.scss";
 
-const about = () => {
+
+const AboutPage = () => {
 	return (<>
 			<h1>About</h1>
 			<h2>Project created by 7 students in their last to final year of
@@ -57,4 +59,4 @@ const about = () => {
 		</>);
 }
 
-export default about;
+export default AboutPage;
