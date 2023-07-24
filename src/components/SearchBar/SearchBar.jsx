@@ -1,13 +1,16 @@
-import { Search, Option, Detail } from "searchpal";
-import React, {useState, useContext} from "react";
-import "./SearchBar.scss"
-import {CocktailContext} from "../../context/CocktailContext.js";
+import React, {useState} from "react";
+import {Search, Option} from "searchpal";
 import {useNavigate} from "react-router-dom";
+
+import {useCocktails} from "../../context/CocktailContext.jsx";
+
+import "./SearchBar.scss"
+
 
 const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
-	const {cocktails, alcools} = useContext(CocktailContext);
+	const {cocktails, alcools} = useCocktails();
 
 	const navigate = useNavigate();
 

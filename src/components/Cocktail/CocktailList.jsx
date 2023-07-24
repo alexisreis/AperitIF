@@ -1,14 +1,14 @@
 import React, {useContext} from "react";
 
 import CocktailCard from "./CocktailCard.jsx";
-import {CocktailContext} from "../../context/CocktailContext.js";
+import {useCocktails} from "../../context/CocktailContext.jsx";
 
 import './CocktailList.css'
 
 
 function CocktailList() {
 
-	const {cocktails} = useContext(CocktailContext);
+	const {cocktails} = useCocktails();
 
 	return (
 		<div id="cardsTableau">
