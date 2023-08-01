@@ -8,7 +8,7 @@
   width: 100%;
   margin-bottom: 2rem;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 2em;
   background-color: $white;
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
   transition: all 200ms ease;
@@ -32,7 +32,7 @@
     border-radius: 50%;
     margin-bottom: 1rem;
     padding: 0.25rem;
-    background: linear-gradient(135deg, rgb(0,255,164), rgb(166,104,255));
+    background: linear-gradient(135deg, var(--navbar-background-color), rgb(248, 79, 85));
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
     object-fit: cover;
 
@@ -41,31 +41,17 @@
     }
 }
 
-h1 {
-  text-align: center;
-
-  @media only screen and (min-width: 940px) {
-    text-align: left;
-  }
+.member-description {
+  color: rgb(248, 79, 85);
+  font-weight: 600;
 }
 
-h2 {
-  text-align: center;
-
-  @media only screen and (min-width: 940px) {
-    text-align: left;
-  }
+.member-card ul {
+  margin-top: 1.5em;
 }
 
-
-a {
-  color: $dark;
-  transition: color 200ms ease;
-}
-
-a:hover {
-  color: $lightgray;
-  transition: color 200ms ease;
+.member-card li {
+  margin-bottom: 0.5em;
 }
 
 .hand {

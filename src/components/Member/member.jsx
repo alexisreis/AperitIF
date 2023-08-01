@@ -1,26 +1,23 @@
 import React from 'react';
 
-import DefaultCocktail from "../../assets/default_cocktail.jpg";
-
 import "./member.scss";
 
 
-const Member = ({name, description, fuel, country, mail}) => {
+const Member = ({name, picture, description, fuel, country, mail}) => {
 
    return (
       <div className="member-card">
 
-        <img className="member-profile-picture" src={DefaultCocktail} alt={name} />
+        <img className="member-profile-picture" src={picture} alt={name} />
 
         <div>
-            <h3>Hi, I'm <span>{name}</span><span className="hand">🤚</span>
-            </h3>
-            <h4>I'm {description}.</h4>
-            <ul className="emoji-bullets">
-              <li>🇫🇷 Based in {country}</li>
+            <h3>Hi, I'm <span>{name}</span><span className="hand">🤚</span></h3>
+            <p>I'm <span className="member-description">{description}</span></p>
+            <ul>
+              <li>🌍 Based in <strong>{country}</strong></li>
               <li>☕ Powered by {fuel}</li>
-              <li>🎓 Student at INSA Lyon</li>
-              <li>📧 {mail}</li>
+              <li>🎓 Student at <strong>INSA Lyon</strong></li>
+              <li>📧 <a href={`mailto:${mail}`}>{mail}</a></li>
             </ul>
          </div>
       </div>
