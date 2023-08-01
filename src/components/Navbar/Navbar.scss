@@ -12,46 +12,75 @@
     flex-direction: row;
     gap: 1em;
     align-items: center;
+    cursor: pointer;
+}
 
+.title {
+  color: white;
+  transition: 0.5s ease-in-out all;
 }
 
 #logo {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
-    filter: drop-shadow(5px 5px 5px #555);
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+    transition: 0.5s ease-in-out all;
 }
 
+#header_title:hover #logo {
+    transform: rotateZ(30deg);
+}
+
+#header_title:hover .title {
+    letter-spacing: 5px;
+    color: #ffffe7;
+}
+
+#navbar-search-bar {
+    width: 25vw;
+
+    @media (max-width: 1200px) {
+      width: 30vw;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+
+
 .header {
-  background: rgba(255, 72, 72, 0.9);
+  background: var(--navbar-background-color);
   width: 100%;
-  height: 100px;
-  padding: 0 1.5rem;
+  height: 3.8em;
   @include breakpoint(md) {
     padding: 0 3rem;
   }
   transition: 0.3s ease all;
 
   .title {
-    line-height: 0.05pt;
-  }
-
-  .subtitle {
-    font-size: 8pt;
-    line-height: 0.05pt;
+    font-size: 0.9em;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    margin-right: 2em;
   }
 
   &__content {
     overflow: hidden;
     color: #fff;
     margin: 0 auto;
-    max-width: 1920px;
+    width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
     z-index: 100;
+
+    @media (max-width: 1200px) {
+      width: 90%;
+    }
 
     &__logo {
       font-size: 2rem;
@@ -76,6 +105,10 @@
       backdrop-filter: blur(2px);
       transform: translate(0);
       transition: 0.3s ease transform;
+
+      @media (max-width: 1000px) {
+        display: none;
+      }
 
 
       @include breakpoint(md) {
@@ -163,9 +196,14 @@
 
       }
 
-
       &.isMenu {
         transform: translate(100%);
+      }
+
+      @media (min-width: 769px) {
+        &.isMenu {
+          display: flex;
+        }
       }
     }
 
@@ -184,7 +222,10 @@
       @include breakpoint(md) {
         display: none;
       }
+
+      @media (min-width: 769px) {
+        display: none;
+      }
     }
   }
 }
-        
