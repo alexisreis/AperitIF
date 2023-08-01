@@ -1,0 +1,22 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--footer-background-color);
+    margin-top: 30px;
+    width: 100%;
+    height: var(--footer-height);
+    text-align: center;
+}
+
+.footer-content {
+    padding: .5em;
+    width: var(--laptop-width);
+}
+
+@media and (max-width: 768px) {
+    .footer-content {
+        width: var(--mobile-width);
+    }
+}
