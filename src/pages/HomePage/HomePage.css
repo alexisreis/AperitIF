@@ -1,0 +1,42 @@
+#presentation-section {
+    display: flex;
+    flex-direction: row;
+    gap: 3em;
+    padding: 3em;
+}
+
+#presentation-section img {
+    width: 250px;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#presentation-content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+}
+
+#presentation-section h1 {
+    font-size: 4em;
+    color: var(--navbar-background-color);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#presentation-section h2 {
+    font-size: 2em;
+}
+
+#fr {
+    color: #0000ff;
+}
+
+#an {
+    color: #FFF;
+    -webkit-text-stroke: 1px #111;
+}
+
+#ce {
+    color: #ff0000;
+}

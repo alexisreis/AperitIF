@@ -1,19 +1,58 @@
 @import "./variable";
 
-h1 {
-  text-align: center;
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 2em;
+  background-color: $white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 200ms ease;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  }
+
   @media only screen and (min-width: 940px) {
-    text-align: left;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem;
   }
 }
 
-h2 {
-  text-align: center;
-  @media only screen and (min-width: 940px) {
-    text-align: left;
-  }
+.member-profile-picture {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+    background: linear-gradient(135deg, var(--navbar-background-color), rgb(248, 79, 85));
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+
+    @media only screen and (min-width: 940px) {
+        margin-right: 2rem;
+    }
 }
 
+.member-description {
+  color: rgb(248, 79, 85);
+  font-weight: 600;
+}
+
+.member-card ul {
+  margin-top: 1.5em;
+}
+
+.member-card li {
+  margin-bottom: 0.5em;
+}
 
 .hand {
   animation-name: wave;
@@ -21,16 +60,6 @@ h2 {
   animation-iteration-count: infinite;
   transform-origin: 70% 70%;
   display: inline-block;
-}
-
-a {
-  color: $dark;
-  transition: color 200ms ease;
-}
-
-a:hover {
-  color: $lightgray;
-  transition: color 200ms ease;
 }
 
 @keyframes wave {

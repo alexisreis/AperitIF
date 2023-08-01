@@ -1,23 +1,27 @@
-import { Search, Option, Detail } from "searchpal";
-import React, {useState, useContext} from "react";
-import "./SearchBar.scss"
-import {CocktailContext} from "../../context/CocktailContext.js";
+import React, {useState} from "react";
+import {Search, Option} from "searchpal";
 import {useNavigate} from "react-router-dom";
+
+import {useCocktails} from "../../context/CocktailContext.jsx";
+
+import "./SearchBar.scss"
+
 
 const SearchBar = () => {
 
 	const [open, setOpen] = useState(false);
-	const {cocktails, alcools} = useContext(CocktailContext);
+	const {cocktails, alcools} = useCocktails();
 
 	const navigate = useNavigate();
 
-
 	const navigateToCocktail = (name) => {
 		navigate(`/cocktail/${name}`);
+		setOpen(false);
 	}
 
 	const navigateToAlcool = (name) => {
 		navigate(`/alcool/${name}`);
+		setOpen(false);
 	}
 
 	return (
@@ -59,8 +63,7 @@ const SearchBar = () => {
 					<Option
 						label={cocktail.name}
 						sublabel={"Cocktail"}
-						img={{ src: cocktail.img, alt: `${cocktail.name} profile picture` }}
-						// href={`/cocktail/${cocktail.name}`}
+						img={{ src: cocktail.img, alt: `${cocktail.name}` }}
 						onClick={() => navigateToCocktail(cocktail.name)}
 						keywords={(getKeywords) =>
 							getKeywords(
@@ -77,8 +80,7 @@ const SearchBar = () => {
 					<Option
 						label={alcohol.name}
 						sublabel={"Alcohol"}
-						img={{ src: alcohol.img, alt: `${alcohol.name} profile picture` }}
-						// href={`/alcool/${alcohol.name}`}
+						img={{ src: alcohol.img, alt: `${alcohol.name}` }}
 						onClick={() => navigateToAlcool(alcohol.name)}
 						keywords={(getKeywords) =>
 							getKeywords(

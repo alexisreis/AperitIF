@@ -1,0 +1,104 @@
+#cocktail-details-div {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    border-radius: 2em;
+    border: 1px solid lightgray;
+    margin: 2em;
+    max-width: 50vw;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out transform;
+}
+
+#cocktail-details-div:hover {
+    transform: scale(1.01);
+}
+
+#cocktail-img {
+    object-fit: cover;
+    border-radius: 2em 0 0 2em;
+}
+
+#cocktail-infos {
+    padding: 3em 3em 3em 0;
+}
+
+#cocktail-comments {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#ingredients{
+    border: solid 5px;
+    border-image: linear-gradient(-45deg, #3498db, #e67e22) 10;
+    padding: 0px 20px 10px 20px;
+    margin: 10px 30px 10px 30px;
+    font-size: 1.3rem;
+}
+
+.align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.persons-button {
+    width: 1em;
+    height: 1em;
+    font-size: 3em;
+    border-radius: 1em;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--navbar-background-color);
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+}
+
+.persons-button:disabled {
+    background-color: var(--app-background-color);
+    color: lightgray;
+    cursor: not-allowed;
+}
+
+.textNumberPersons{
+    margin: 0 0.5em;
+    font-size: 1.5em;
+    font-weight: 400;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    #cocktail-details-div {
+        max-width: 95vw;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    #cocktail-img {
+        border-radius: 2em 2em 0 0;
+        max-height: 60vh;
+    }
+
+    #cocktail-infos {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        padding: 0 1em 1em;
+    }
+
+    #cocktail-name {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #cocktail-details-div {
+        max-width: 80vw;
+    }
+}
