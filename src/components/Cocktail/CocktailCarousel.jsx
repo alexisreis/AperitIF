@@ -1,5 +1,4 @@
 import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
 
 import CocktailCard from "./CocktailCard.jsx";
 
@@ -8,20 +7,12 @@ import './CocktailCarousel.css'
 
 const CocktailCarousel = ({cocktails}) =>  {
 
-	return (<div className="carouselDiv">
-
-		<Carousel centerMode
-		          showStatus={false}
-		          showIndicators={false}
-		          showThumbs={false}
-		          infiniteLoop={false}
-		          centerSlidePercentage={20}>
-
+	return (
+		<div className="carouselDiv">
             {cocktails.map((card, index) =>
-                            <CocktailCard key={index} name={card.get("name")} img={card.get("thumbnail")} />
+                            <CocktailCard key={index} name={card?.name || card.get("name")} img={card?.thumbnail || card.get("thumbnail")} />
             )}
-		</Carousel>
-	</div>)
+		</div>)
 }
 
 export default CocktailCarousel;

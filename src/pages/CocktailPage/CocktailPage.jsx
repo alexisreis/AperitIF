@@ -5,6 +5,7 @@ import {CocktailRequest} from "../../utils/dbpediaRequests.js";
 import CocktailCarousel from "../../components/Cocktail/CocktailCarousel.jsx";
 
 import './CocktailPage.css'
+import Loading from "../../components/Loading/Loading.jsx";
 
 const CocktailPage = () => {
 
@@ -21,8 +22,11 @@ const CocktailPage = () => {
     const [cocktailsIngredients, setCocktailsIngredients] = useState([]);
     const [numberOfDrinks, setNumberOfDrinks] = useState(1);
 
+    const [loading, setLoading] = useState(true);
+
 
     const rechercher = async () => {
+        setLoading(true);
 
         const recherche = CocktailRequest(nameCocktail);
         const url = "https://dbpedia.org/sparql?query=" + encodeURIComponent(recherche) + "&format=json";
@@ -33,6 +37,8 @@ const CocktailPage = () => {
             parseCocktailRequestData(data);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -167,35 +173,43 @@ const CocktailPage = () => {
     }, [nameCocktail]);
 
     return (<>
-        <div id="resultatOneCocktail">
-            <h1 id='h1cocktail'>{cocktail.name}</h1>
-            <div className='align'>
-                <div>
-                    <p id="comments">{cocktail.comments}</p>
-                    <div id="ingredients">
-                        <div className="align">
-                            <button className='numberPersonsPlusMoins'
-                                    disabled={numberOfDrinks === 1}
-                                    onClick={decreaseNumberOfDrinks}>-
-                            </button>
-                            <p
-                                className="textNumberPersons">For {numberOfDrinks} drink{numberOfDrinks > 1 && 's'}</p>
-                            <button className='numberPersonsPlusMoins'
-                                    onClick={increaseNumberOfDrinks}>+
-                            </button>
-                        </div>
+        {loading &&  <Loading />}
 
+        <div id="cocktail-details-div">
+            <img id='cocktail-img' src={cocktail.img}/>
+            <div id="cocktail-infos">
+                <h1 id='cocktail-name'>{cocktail.name} 🍹</h1>
+                <p id="cocktail-comments">{cocktail.comments}</p>
+
+                <div id="cocktail-ingredients-div">
+                    <div className="align">
+                        <button className='persons-button'
+                                disabled={numberOfDrinks === 1}
+                                onClick={decreaseNumberOfDrinks}
+                                title="Decrease number of drinks"
+                        >
+                            <span>-</span>
+                        </button>
+                        <p
+                            className="textNumberPersons">Recipe for <strong>{numberOfDrinks}</strong> drink{numberOfDrinks > 1 && 's'}</p>
+                        <button className='persons-button'
+                                onClick={increaseNumberOfDrinks}
+                                title="Increase number of drinks"
+                        >
+                            <span>+</span>
+                        </button>
+                    </div>
+
+                    <div>
                         {cocktail.ingredients_names.length > 0 && cocktail.ingredients_names.map((ingredient, index) =>
-                            <div className='eachIngredient' key={ingredient}>
-                                ➡️ {!isNaN(cocktail.ingredients_quantities[index]) && <label
-                                className='ab'>{cocktail.ingredients_quantities[index]} </label>}
+
+                            <div className='ingredient' key={ingredient}>
+                                ➡️ {!isNaN(cocktail.ingredients_quantities[index]) &&
+                                <strong>{cocktail.ingredients_quantities[index]} </strong>}
                                 {ingredient}
                             </div>)}
                     </div>
-                </div>
-                <div>
-                    <img id='imgCocktail' src={cocktail.img}/>
-                    <div id='served'> Served on: {cocktail.served}</div>
+
                 </div>
             </div>
         </div>

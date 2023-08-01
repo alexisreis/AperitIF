@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 
-import CocktailSuggestion from "../../components/Cocktail/CocktailSuggestion.jsx";
 import {AlcoholRequest} from "../../utils/dbpediaRequests.js";
+import CocktailCarousel from "../../components/Cocktail/CocktailCarousel.jsx";
+
+import "../CocktailPage/CocktailPage.css";
+import Loading from "../../components/Loading/Loading.jsx";
 
 const AlcoholPage = () => {
 
@@ -13,6 +16,8 @@ const AlcoholPage = () => {
         comments: "",
         cocktails: []
     })
+
+    const [loading, setLoading] = useState(true);
 
 
     const rechercher = async () => {
@@ -26,6 +31,8 @@ const AlcoholPage = () => {
             parseAlcoholRequestData(data);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -40,7 +47,7 @@ const AlcoholPage = () => {
             if (data.results.bindings[i].thumbnail2 != undefined && data.results.bindings[i].nameSP != undefined) {
                 cocktails.push({
                     name: data.results.bindings[i].nameSP.value,
-                    img: data.results.bindings[i].thumbnail2.value,
+                    thumbnail: data.results.bindings[i].thumbnail2.value,
                 })
             }
         }
@@ -59,26 +66,22 @@ const AlcoholPage = () => {
 
     return (
         <>
-            <div id="resultatOneAlcool">
-                <h1>{alcool.name}</h1>
-                <div className="align">
-                    <div>
-                        <p id="comments">{alcool.comments}</p>
-                    </div>
-                    <div>
-                        <img id="imgCocktail" src={alcool.img} alt="imgCocktail"/>
-                    </div>
-                </div>
+            {loading && <Loading/>}
 
-                <h2>Cocktails made with {alcool.name} :</h2>
-                <div id="suggestion">
-                    <ul className="no-bullets">
-                        {alcool.cocktails.length > 0 ? alcool.cocktails.map((cocktail) => (
-                            <CocktailSuggestion key={cocktail.name} cocktail={cocktail}/>
-                        )) : <p>No cocktails found with with alcohol</p>}
-                    </ul>
+            <div id="cocktail-details-div">
+                <img id="cocktail-img" src={alcool.img} alt="imgCocktail"/>
+                <div id="cocktail-infos">
+                    <h1 id="cocktail-name">{alcool.name}</h1>
+                    <p id="cocktail-comments">{alcool.comments}</p>
                 </div>
             </div>
+
+            {alcool.cocktails.length > 0 ?
+                    <>
+                        <h2>Cocktails made with {alcool.name}</h2>
+                        <CocktailCarousel cocktails={alcool.cocktails}/>
+                    </> : null
+            }
         </>);
 }
 

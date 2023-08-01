@@ -1,3 +1,13 @@
 .carouselDiv{
-    margin-bottom:20px;
+    display: flex;
+    flex-direction: row;
+    max-width: 70vw;
+    overflow-x: auto;
+    margin-bottom: 2em;
+}
+
+@media screen and (max-width: 800px) {
+    .carouselDiv{
+        max-width: 90vw;
+    }
 }

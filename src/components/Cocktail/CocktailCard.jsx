@@ -17,7 +17,9 @@ const CocktailCard = ({name, img}) => {
 			<a onClick={navigateToCocktail}>
 				<img src={img ? img : defaultCocktail}
 				     onError={(e) => {e.target.src = defaultCocktail }}/>
-				<div><p>{name}</p></div>
+				<div>
+					<p>{name}</p>
+				</div>
 			</a>
 		</div>
 	)
