@@ -14,7 +14,7 @@ function HomePage() {
             <div id="presentation-content">
                 <h1>🍻 Santé !</h1>
                 <h2>as we say in <span id="fr">Fr</span><span id="an">an</span><span id="ce">ce</span> 🥖</h2>
-                <SearchBar/>
+                <SearchBar />
             </div>
 
         </div>

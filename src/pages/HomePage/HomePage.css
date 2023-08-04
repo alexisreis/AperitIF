@@ -40,3 +40,32 @@
 #ce {
     color: #ff0000;
 }
+
+@media screen and (max-width: 900px) {
+    #presentation-section {
+        flex-direction: column;
+        gap: 1em;
+        padding: 1em;
+    }
+
+    #presentation-section img {
+        display: none;
+    }
+
+    #presentation-content {
+        width: 100%;
+        align-items: center;
+    }
+
+    #presentation-section h1 {
+        font-size: 3em;
+    }
+
+    #presentation-section h2 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+}
